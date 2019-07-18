@@ -47,7 +47,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="50dip"
+        android:layout_marginTop="70dip"
         app:srcCompat="@drawable/SocialNetork" />
 
 </LinearLayout>
