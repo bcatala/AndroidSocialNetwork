@@ -48,6 +48,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="70dip"
-        app:srcCompat="@drawable/SocialNetork" />
+        app:srcCompat="@drawable/socialnetwork" />
 
 </LinearLayout>
