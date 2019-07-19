@@ -1,69 +1,84 @@
 
 package com.alfredo.android.a21pointsandroid.model;
 
+
+
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("login")
-    @Expose
-    private String login;
-    @SerializedName("firstName")
-    @Expose
-    private String firstName;
-    @SerializedName("lastName")
-    @Expose
-    private String lastName;
-    @SerializedName("email")
-    @Expose
-    private String email;
     @SerializedName("activated")
     @Expose
     private Boolean activated;
-    @SerializedName("langKey")
+    @SerializedName("authorities")
     @Expose
-    private String langKey;
+    private List<String> authorities = null;
+    @SerializedName("createdBy")
+    @Expose
+    private String createdBy;
+    @SerializedName("createdDate")
+    @Expose
+    private String createdDate;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("firstName")
+    @Expose
+    private String firstName;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
     @SerializedName("imageUrl")
     @Expose
     private String imageUrl;
-    @SerializedName("resetDate")
+    @SerializedName("langKey")
     @Expose
-    private Object resetDate;
+    private String langKey;
+    @SerializedName("lastModifiedBy")
+    @Expose
+    private String lastModifiedBy;
+    @SerializedName("lastModifiedDate")
+    @Expose
+    private String lastModifiedDate;
+    @SerializedName("lastName")
+    @Expose
+    private String lastName;
+    @SerializedName("login")
+    @Expose
+    private String login;
 
-    public Integer getId() {
-        return id;
+    public Boolean getActivated() {
+        return activated;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
     }
 
-    public String getLogin() {
-        return login;
+    public List<String> getAuthorities() {
+        return authorities;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setAuthorities(List<String> authorities) {
+        this.authorities = authorities;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getEmail() {
@@ -74,20 +89,20 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getActivated() {
-        return activated;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setActivated(Boolean activated) {
-        this.activated = activated;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLangKey() {
-        return langKey;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLangKey(String langKey) {
-        this.langKey = langKey;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getImageUrl() {
@@ -98,12 +113,44 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
-    public Object getResetDate() {
-        return resetDate;
+    public String getLangKey() {
+        return langKey;
     }
 
-    public void setResetDate(Object resetDate) {
-        this.resetDate = resetDate;
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public String getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(String lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override
@@ -112,5 +159,10 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 '}';
+    }
+
+    public String convertString() {
+        return this.id.toString() + "/" + this.login + "/" + this.firstName + "/" + this.lastName + "/" +
+                this.email + "/" + this.activated.toString() + "/" + this.langKey + "/" + this.imageUrl;
     }
 }

@@ -1,20 +1,19 @@
 package com.alfredo.android.a21pointsandroid.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.alfredo.android.a21pointsandroid.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends Activity {
     private static int SPASH_TIME_OUT = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

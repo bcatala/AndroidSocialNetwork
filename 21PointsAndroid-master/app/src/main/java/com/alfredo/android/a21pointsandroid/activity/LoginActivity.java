@@ -2,6 +2,7 @@ package com.alfredo.android.a21pointsandroid.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,22 +17,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
+import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, PointsAPICallBack {
+public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, PointsAPICallBack, UserAPICallBack {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mLoginFormView;
+    private Button GotoMenu;
+    private Points points;
+    private String email;
+    private String password;
+    private User user;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +111,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
             // form field with an error.
             focusView.requestFocus();
         } else {
+            this.email = email;
+            this.password = password;
             RestAPIManager.getInstance().getUserToken(email, password, this);
         }
     }
@@ -121,10 +132,20 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         Log.d("21Points", "onGetPoints OK " + points.getId());
 
+        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+
+        //i.putExtra("email", this.email);
+        //i.putExtra("c", this.password);
+        //i.putExtra("user", this.user.convertString());
+
+        startActivity(i);
+
         new AlertDialog.Builder(this)
                 .setTitle("Points")
                 .setMessage(points.toString())
                 .show();
+
+
     }
 
     @Override
@@ -158,8 +179,9 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
 
+        this.token = userToken.getIdToken();
 
-        RestAPIManager.getInstance().postPoints(new Points("2019-03-14",1,1,1), this);
+        RestAPIManager.getInstance().getUserAccount(this, token);
 
     }
 
@@ -185,6 +207,24 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void onGetUser(User body){
+        this.user = body;
+
+        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+
+        //i.putExtra("email", this.email);
+        //i.putExtra("c", this.password);
+        //i.putExtra("user", this.user.convertString());
+
+        startActivity(i);
+    }
+
+    @Override
+    public void onGetUserInfo(User body){
+
     }
 }
 

@@ -1,11 +1,13 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
 import com.alfredo.android.a21pointsandroid.model.Points;
+import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
+import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestAPIManager {
 
     //private static final String BASE_URL = "http://" + "your_ip:8080/";
-    private static final String BASE_URL = "http://" + "android.byted.xyz/";
+    private static final String BASE_URL = "http://android3.byted.xyz/";
     private static RestAPIManager ourInstance;
     private Retrofit retrofit;
     private RestAPIService restApiService;
@@ -124,6 +126,28 @@ public class RestAPIManager {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 registerAPICallback.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getUserAccount(final UserAPICallBack userAPICallBack, String token) {
+        User user = new User();
+        Call<User> call = restApiService.getUserAccount("Bearer " + token);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if (response.isSuccessful()) {
+                    userAPICallBack.onGetUser(response.body());
+
+                } else {
+                    userAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                userAPICallBack.onFailure(t);
             }
         });
     }
