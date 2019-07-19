@@ -14,7 +14,7 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        new Handler().postDelayed(new Runnable() {
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent homeIntent = new Intent(HomeActivity.this, MainActivity.class);
@@ -22,6 +22,9 @@ public class HomeActivity extends Activity {
                 finish();
             }
 
-        }, SPASH_TIME_OUT);
+        }, SPASH_TIME_OUT);*/
+        Intent homeIntent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(homeIntent);
+
     }
 }

@@ -65,49 +65,6 @@ public class RestAPIManager {
         });
     }
 
-    public synchronized void postPoints(Points points, final PointsAPICallBack pointsAPICallBack) {
-        final Points newUserPoints = points;
-        Call<Points> call = restApiService.postPoints(newUserPoints, "Bearer " + userToken.getIdToken());
-
-        call.enqueue(new Callback<Points>() {
-            @Override
-            public void onResponse(Call<Points> call, Response<Points> response) {
-
-                if (response.isSuccessful()) {
-                    pointsAPICallBack.onPostPoints(response.body());
-                } else {
-                    pointsAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Points> call, Throwable t) {
-                pointsAPICallBack.onFailure(t);
-            }
-        });
-    }
-
-    public synchronized void getPointsById( Integer id , final PointsAPICallBack pointsAPICallBack) {
-        Call<Points> call = restApiService.getPointsById(id, "Bearer " + userToken.getIdToken());
-
-        call.enqueue(new Callback<Points>() {
-            @Override
-            public void onResponse(Call<Points> call, Response<Points> response) {
-
-                if (response.isSuccessful()) {
-                    pointsAPICallBack.onGetPoints(response.body());
-                } else {
-                    pointsAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Points> call, Throwable t) {
-                pointsAPICallBack.onFailure(t);
-            }
-        });
-    }
-
     public synchronized void register(String username, String email, String password, final RegisterAPICallback registerAPICallback) {
         UserData userData = new UserData(username, email, password);
         Call<Void> call = restApiService.register(userData);

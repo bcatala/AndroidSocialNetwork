@@ -24,10 +24,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button mGotoMenu = (Button) findViewById(R.id.GotoMenu);
 
-        /*String email = getIntent().getStringExtra("email");
+        String email = getIntent().getStringExtra("email");
 
         TextView textView4= findViewById(R.id.textView4);
         textView4.setText(email);
+
         //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
 
 

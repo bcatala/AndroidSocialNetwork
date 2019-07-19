@@ -29,7 +29,7 @@ import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, PointsAPICallBack, UserAPICallBack {
+public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -128,36 +128,6 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     }
 
     @Override
-    public void onGetPoints(Points points) {
-
-        Log.d("21Points", "onGetPoints OK " + points.getId());
-
-        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
-
-        //i.putExtra("email", this.email);
-        //i.putExtra("c", this.password);
-        //i.putExtra("user", this.user.convertString());
-
-        startActivity(i);
-
-        new AlertDialog.Builder(this)
-                .setTitle("Points")
-                .setMessage(points.toString())
-                .show();
-
-
-    }
-
-    @Override
-    public void onPostPoints(Points points) {
-
-        Log.d("21Points", "onPostPoints OK " + points.getId());
-
-        RestAPIManager.getInstance().getPointsById(points.getId(), this);
-
-    }
-
-    @Override
     public void onLoginSuccess(UserToken userToken) {
 
         Log.d("21Points", "onLoginSuccess OK " + userToken.getIdToken());
@@ -181,8 +151,11 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         this.token = userToken.getIdToken();
 
-        RestAPIManager.getInstance().getUserAccount(this, token);
+        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        i.putExtra("token", this.token);
+        //i.putExtra("user", this.user.convertString());
 
+        startActivity(i);
     }
 
     @Override
@@ -213,13 +186,13 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetUser(User body){
         this.user = body;
 
-        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+       /* Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
 
-        //i.putExtra("email", this.email);
-        //i.putExtra("c", this.password);
+        i.putExtra("login", this.user.getLogin());
+        i.putExtra("username", this.user.getFirstName());
         //i.putExtra("user", this.user.convertString());
 
-        startActivity(i);
+        startActivity(i);*/
     }
 
     @Override
