@@ -14,6 +14,7 @@ import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
@@ -25,6 +26,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private User user;
 
     private Button mFriendListButton;
+    private Button mSearchUserButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,20 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", user);
+                i.putExtras(bundle);
+
+                startActivity(i);
+            }
+        });
+
+        mSearchUserButton = (Button) findViewById(R.id.search_user);
+        mSearchUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, SearchUserActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", user);
@@ -98,6 +114,22 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
     @Override
     public void onGetAllUsers(ArrayList<User> body){
+
+    }
+
+    @Override
+    public void onUserFound(User body){
+
+    }
+
+    @Override
+    public void onUserProfileFound(UserProfile body){
+
+    }
+
+
+    @Override
+    public void onGetAllUserProfiles(ArrayList<UserProfile> body){
 
     }
 }

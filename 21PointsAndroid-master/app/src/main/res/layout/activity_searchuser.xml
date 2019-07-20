@@ -9,57 +9,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".activity.LoginActivity">
+    tools:context=".activity.SearchUserActivity">
 
     <ScrollView
-        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+
+
+            <EditText
+                android:id="@+id/user_to_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="User to search"
+                android:maxLines="1"
+                android:singleLine="true"
+                />
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="User to search"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:id="@+id/userFound"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/userFound"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="No User Found" />
-
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="match_parent"
+                android:hint="No User Found" />
 
 
+            <Button
+                android:id="@+id/search_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Search"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <Button
-        android:id="@+id/email_sign_in_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Search"
-        android:textStyle="bold" />
+
     </ScrollView>
 </LinearLayout>

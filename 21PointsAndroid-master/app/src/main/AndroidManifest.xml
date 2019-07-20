@@ -35,6 +35,9 @@
         <activity
             android:name=".activity.friendList.FriendActivity"
             android:label="Friend Info" />
+        <activity
+            android:name=".activity.SearchUserActivity"
+            android:label="Search User" />
         <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

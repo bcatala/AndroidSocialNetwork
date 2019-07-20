@@ -4,6 +4,7 @@ import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguratio
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 
 import java.util.ArrayList;
@@ -30,4 +31,13 @@ public interface RestAPIService {
 
     @GET("/api/users")
     Call<ArrayList<User>> getAllUsers(@Header("Authorization") String token);
+    @GET("/api/my-friends")
+    Call<ArrayList<UserProfile>> getFriends(@Header("Authorization") String token);
+    @GET("/api/users/{login}")
+    Call<User> searchUser(@Path("login") String login, @Header("Authorization") String token);
+    @GET("/api/profiles/{id}")
+    Call<UserProfile> searchUserProfile(@Path("id") Integer id, @Header("Authorization") String token);
+
+    @GET("/api/profiles")
+    Call<ArrayList<UserProfile>> searchAllUserProfiles(@Header("Authorization") String token);
 }

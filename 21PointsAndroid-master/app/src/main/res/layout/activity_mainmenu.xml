@@ -55,7 +55,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="messages" />
-
+            <Button
+                android:id="@+id/search_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="search user" />
 
         </LinearLayout>
     </ScrollView>

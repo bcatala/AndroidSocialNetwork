@@ -2,6 +2,9 @@ package com.alfredo.android.a21pointsandroid.activity.friendList;
 
 import android.content.Context;
 
+import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +24,10 @@ public class FriendLab {
 
     private FriendLab(Context context) {
         mFriends = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < LoginActivity.myFriends.size(); i++) {
             Friend friend = new Friend();
-            friend.setUsername(FriendListActivity.user.getLogin());
-            friend.setEmail(FriendListActivity.user.getLogin());
+            friend.setUsername(LoginActivity.myFriends.get(i).getUser().getLogin());
+            friend.setEmail(LoginActivity.myFriends.get(i).getUser().getEmail());
             mFriends.add(friend);
         }
     }

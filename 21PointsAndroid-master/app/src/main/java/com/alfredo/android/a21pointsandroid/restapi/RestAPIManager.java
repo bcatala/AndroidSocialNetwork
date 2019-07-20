@@ -3,6 +3,8 @@ package com.alfredo.android.a21pointsandroid.restapi;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
@@ -133,4 +135,89 @@ public class RestAPIManager {
         });
     }
 
+    public synchronized void getFriends(final MyFriendsAPICallBack myFriendsAPICallBack, String token){
+        Call<ArrayList<UserProfile>> call = restApiService.getFriends("Bearer " + token);
+        call.enqueue(new Callback<ArrayList<UserProfile>>() {
+            @Override
+            public void onResponse(Call<ArrayList<UserProfile>> call, Response<ArrayList<UserProfile>> response) {
+
+                if (response.isSuccessful()) {
+                    myFriendsAPICallBack.onGetFriends(response.body());
+
+                } else {
+                    myFriendsAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<UserProfile>> call, Throwable t) {
+                myFriendsAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void searchUser(final UserAPICallBack userAPICallBack, String token, String login) {
+
+        Call<User> call = restApiService.searchUser(login,"Bearer " + token);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if (response.isSuccessful()) {
+                    userAPICallBack.onUserFound(response.body());
+
+                } else {
+                    userAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                userAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void searchUserProfile(final UserAPICallBack userAPICallBack, String token, Integer id) {
+
+        Call<UserProfile> call = restApiService.searchUserProfile(id,"Bearer " + token);
+        call.enqueue(new Callback<UserProfile>() {
+            @Override
+            public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
+
+                if (response.isSuccessful()) {
+                    userAPICallBack.onUserProfileFound(response.body());
+
+                } else {
+                    userAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserProfile> call, Throwable t) {
+                userAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void searchAllUserProfiles(final UserAPICallBack usersAPICallBack, String token){
+        Call<ArrayList<UserProfile>> call = restApiService.searchAllUserProfiles("Bearer " + token);
+        call.enqueue(new Callback<ArrayList<UserProfile>>() {
+            @Override
+            public void onResponse(Call<ArrayList<UserProfile>> call, Response<ArrayList<UserProfile>> response) {
+
+                if (response.isSuccessful()) {
+                    usersAPICallBack.onGetAllUserProfiles(response.body());
+
+                } else {
+                    usersAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<UserProfile>> call, Throwable t) {
+                usersAPICallBack.onFailure(t);
+            }
+        });
+    }
 }

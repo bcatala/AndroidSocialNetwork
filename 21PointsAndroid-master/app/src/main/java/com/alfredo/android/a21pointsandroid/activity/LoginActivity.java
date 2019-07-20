@@ -18,8 +18,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.model.User;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.model.Points;
+import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
@@ -27,11 +29,12 @@ import com.alfredo.android.a21pointsandroid.model.UserToken;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack {
+public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack, MyFriendsAPICallBack {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -42,8 +45,10 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     private String email;
     private String password;
     private User user;
-    private String token;
-    static ArrayList<User> allUsers;
+    public static String token;
+
+    public static ArrayList<User> allUsers;
+    public static ArrayList<UserProfile> myFriends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,11 +210,35 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         this.allUsers = body;
 
+        RestAPIManager.getInstance().getFriends(this, token);
+    }
+
+    @Override
+    public void onGetFriends(ArrayList<UserProfile> myfriends){
+
+        this.myFriends = myfriends;
+
         Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
         i.putExtra("token", this.token);
         //i.putExtra("user", this.user.convertString());
 
         startActivity(i);
+    }
+
+    @Override
+    public void onUserFound(User body){
+
+    }
+
+    @Override
+    public void onUserProfileFound(UserProfile body){
+
+    }
+
+
+    @Override
+    public void onGetAllUserProfiles(ArrayList<UserProfile> body){
+
     }
 }
 
