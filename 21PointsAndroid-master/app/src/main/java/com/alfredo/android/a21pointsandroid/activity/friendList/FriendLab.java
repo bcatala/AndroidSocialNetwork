@@ -23,8 +23,8 @@ public class FriendLab {
         mFriends = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             Friend friend = new Friend();
-            friend.setUsername("Crime #" + i);
-            friend.setEmail("Bernat@bernat.bernat");
+            friend.setUsername(FriendListActivity.user.getLogin());
+            friend.setEmail(FriendListActivity.user.getLogin());
             mFriends.add(friend);
         }
     }

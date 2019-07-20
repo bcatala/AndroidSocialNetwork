@@ -30,9 +30,12 @@
             android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.friendList.FriendListActivity"
             android:label="Friend List" />
-        <activity android:name=".activity.friendList.FriendListActivity">
+        <activity
+            android:name=".activity.friendList.FriendActivity"
+            android:label="Friend Info" />
+        <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,8 +43,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.friendList.FriendActivity">
-        </activity>
     </application>
 
 </manifest>

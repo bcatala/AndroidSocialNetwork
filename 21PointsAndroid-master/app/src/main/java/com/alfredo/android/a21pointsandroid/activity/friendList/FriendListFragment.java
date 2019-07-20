@@ -1,6 +1,7 @@
 package com.alfredo.android.a21pointsandroid.activity.friendList;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,10 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class FriendListFragment extends Fragment {
 
         return view;
     }
+
 
     private void updateUI() {
         FriendLab friendLab = FriendLab.get(getActivity());
@@ -65,9 +69,10 @@ public class FriendListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),
-                    mFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT)
-                    .show();
+            //Toast.makeText(getActivity(), mFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(view.getContext(), FriendActivity.class);
+            view.getContext().startActivity(i);
+            //view.getContext().startActivity(i);
         }
     }
 

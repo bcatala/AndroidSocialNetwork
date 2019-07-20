@@ -19,7 +19,7 @@ public class Friend {
     }
 
     public String getUsername() {
-        return "BERNAT";
+        return mUsername;
     }
 
     public void setUsername(String username) {
@@ -27,7 +27,7 @@ public class Friend {
     }
 
     public String getEmail() {
-        return "GUAPO";
+        return mEmail;
     }
 
     public void setEmail(String email) {

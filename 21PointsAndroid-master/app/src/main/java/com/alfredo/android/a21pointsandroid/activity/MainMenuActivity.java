@@ -31,13 +31,18 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
         this.token = getIntent().getStringExtra("token");
 
-        //RestAPIManager.getInstance().getUserAccount(this, token);
+        RestAPIManager.getInstance().getUserAccount(this, token);
 
         mFriendListButton = (Button) findViewById(R.id.friends);
         mFriendListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", user);
+                i.putExtras(bundle);
+
                 startActivity(i);
             }
         });
