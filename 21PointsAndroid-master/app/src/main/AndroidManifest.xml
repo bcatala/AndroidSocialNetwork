@@ -29,6 +29,9 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register" />
+        <activity
+            android:name=".activity.FriendListActivity"
+            android:label="@string/title_activity_register" />
         <activity android:name=".activity.HomeActivity">
 
             <intent-filter>

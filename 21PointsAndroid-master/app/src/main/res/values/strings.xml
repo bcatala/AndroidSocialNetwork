@@ -12,6 +12,13 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
+    <string name="user_name_label">Username_null</string>
+    <string name="user_details_label">UserDetail_null</string>
+    <string name="goto_user_chatroom">Chat!</string>
+    <string name="blocked_label">Black status</string>
+
+
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
