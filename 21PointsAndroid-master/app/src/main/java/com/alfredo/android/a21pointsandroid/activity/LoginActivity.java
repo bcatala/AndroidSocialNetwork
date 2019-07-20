@@ -26,6 +26,8 @@ import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
+import java.util.ArrayList;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     private String password;
     private User user;
     private String token;
+    static ArrayList<User> allUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,11 +154,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         this.token = userToken.getIdToken();
 
-        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-        i.putExtra("token", this.token);
-        //i.putExtra("user", this.user.convertString());
+        RestAPIManager.getInstance().getAllUsers(this, token);
 
-        startActivity(i);
     }
 
     @Override
@@ -198,6 +198,18 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     @Override
     public void onGetUserInfo(User body){
 
+    }
+
+    @Override
+    public void onGetAllUsers(ArrayList<User> body){
+
+        this.allUsers = body;
+
+        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        i.putExtra("token", this.token);
+        //i.putExtra("user", this.user.convertString());
+
+        startActivity(i);
     }
 }
 

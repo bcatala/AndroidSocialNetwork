@@ -17,6 +17,8 @@ import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
+import java.util.ArrayList;
+
 public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack {
 
     private String token;
@@ -92,5 +94,10 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void onGetAllUsers(ArrayList<User> body){
+
     }
 }

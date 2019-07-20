@@ -1,5 +1,6 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
@@ -8,6 +9,8 @@ import com.alfredo.android.a21pointsandroid.model.UserToken;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -104,6 +107,27 @@ public class RestAPIManager {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                userAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getAllUsers(final UserAPICallBack userAPICallBack, String token){
+        Call<ArrayList<User>> call = restApiService.getAllUsers("Bearer " + token);
+        call.enqueue(new Callback<ArrayList<User>>() {
+            @Override
+            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
+
+                if (response.isSuccessful()) {
+                    userAPICallBack.onGetAllUsers(response.body());
+
+                } else {
+                    userAPICallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<User>> call, Throwable t) {
                 userAPICallBack.onFailure(t);
             }
         });
