@@ -1,6 +1,7 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
+import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
@@ -40,4 +41,6 @@ public interface RestAPIService {
 
     @GET("/api/profiles")
     Call<ArrayList<UserProfile>> searchAllUserProfiles(@Header("Authorization") String token);
+    @POST("/api/invite/{userId}")
+    Call<Invitation> inviteUser(@Path("userId") Integer userId, @Header("Authorization") String token);
 }

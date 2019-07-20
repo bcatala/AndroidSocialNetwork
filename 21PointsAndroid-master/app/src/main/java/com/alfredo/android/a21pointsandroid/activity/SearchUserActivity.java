@@ -9,19 +9,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public class SearchUserActivity extends AppCompatActivity implements UserAPICallBack {
+public class SearchUserActivity extends AppCompatActivity implements UserAPICallBack, InviteCallBack {
 
     private Button mSearchButton;
     private EditText mSearchBar;
     private TextView mUserFound;
     private String login;
+    private Button mInviteButton;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
             @Override
             public void onClick(View v) {
                 setLogin(mSearchBar.getText().toString());
+                //mInviteButton.setText("INVITE");
                 RestAPIManager.getInstance().searchUser(getContext(), LoginActivity.token, login);
                 //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
             }
@@ -46,15 +51,30 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
         return this;
     }
 
+    private InviteCallBack getInviteContext(){
+        return this;
+    }
+
     private void setLogin(String login) {
         this.login = login;
     }
 
     @Override
     public void onUserFound(User body){
-        //RestAPIManager.getInstance().searchUserProfile(this, LoginActivity.token, body.getId());
+
+         this.user = body;
+
          mUserFound = (TextView) findViewById(R.id.userFound);
          mUserFound.setText(body.getLogin());
+
+         mInviteButton = (Button) findViewById(R.id.invite_buton);
+         mInviteButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 RestAPIManager.getInstance().inviteUser(getInviteContext(), user.getId());
+             }
+         });
+
     }
 
     @Override
@@ -91,4 +111,10 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
             }
         }
     }
+
+    @Override
+    public void onGetInvitation(Invitation invitation){
+        mInviteButton.setText("SENT!");
+    }
+
 }

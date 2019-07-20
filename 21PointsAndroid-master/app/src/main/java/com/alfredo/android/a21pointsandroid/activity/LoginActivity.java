@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
@@ -138,24 +139,24 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     @Override
     public void onLoginSuccess(UserToken userToken) {
 
-        Log.d("21Points", "onLoginSuccess OK " + userToken.getIdToken());
+        //Log.d("21Points", "onLoginSuccess OK " + userToken.getIdToken());
 
-        new AlertDialog.Builder(this)
-                .setTitle("Token")
-                .setMessage("token: "+ userToken.getIdToken())
-
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Continue with delete operation
-                    }
-                })
-
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        //new AlertDialog.Builder(this)
+        //        .setTitle("Token")
+        //        .setMessage("token: "+ userToken.getIdToken())
+//
+        //        // Specifying a listener allows you to take an action before dismissing the dialog.
+        //        // The dialog is automatically dismissed when a dialog button is clicked.
+        //        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        //            public void onClick(DialogInterface dialog, int which) {
+        //                // Continue with delete operation
+        //            }
+        //        })
+//
+        //        // A null listener allows the button to dismiss the dialog and take no further action.
+        //        .setNegativeButton(android.R.string.no, null)
+        //        .setIcon(android.R.drawable.ic_dialog_alert)
+        //        .show();
 
         this.token = userToken.getIdToken();
 
@@ -240,5 +241,6 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetAllUserProfiles(ArrayList<UserProfile> body){
 
     }
+
 }
 

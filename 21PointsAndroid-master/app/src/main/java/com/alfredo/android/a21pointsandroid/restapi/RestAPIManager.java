@@ -1,9 +1,12 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
+import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
+import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
 import com.alfredo.android.a21pointsandroid.model.UserData;
@@ -217,6 +220,28 @@ public class RestAPIManager {
             @Override
             public void onFailure(Call<ArrayList<UserProfile>> call, Throwable t) {
                 usersAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void inviteUser(final InviteCallBack inviteCallBack, int id) {
+        Call<Invitation> call = restApiService.inviteUser(id, "Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<Invitation>() {
+            @Override
+            public void onResponse(Call<Invitation> call, Response<Invitation> response) {
+                if (response.isSuccessful()) {
+                    inviteCallBack.onGetInvitation(response.body());
+                } else {
+                    System.out.println(response.toString());
+                    System.out.println(response.body());
+                    inviteCallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Invitation> call, Throwable t) {
+                inviteCallBack.onFailure(t);
             }
         });
     }

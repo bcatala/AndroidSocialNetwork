@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
+import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
@@ -132,4 +133,6 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     public void onGetAllUserProfiles(ArrayList<UserProfile> body){
 
     }
+
+
 }
