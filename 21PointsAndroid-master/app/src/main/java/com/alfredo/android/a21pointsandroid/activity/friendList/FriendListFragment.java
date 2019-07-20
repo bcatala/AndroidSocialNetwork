@@ -25,7 +25,7 @@ public class FriendListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_friend_list, container, false);
 
         mFriendRecyclerView = (RecyclerView) view
-                .findViewById(R.id.crime_recycler_view);
+                .findViewById(R.id.friend_recycler_view);
         mFriendRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         updateUI();
@@ -53,8 +53,8 @@ public class FriendListFragment extends Fragment {
             super(inflater.inflate(R.layout.list_item_user, parent, false));
             itemView.setOnClickListener(this);
 
-            mUsernameTextView = (TextView) itemView.findViewById(R.id.username);
-            mEmailTextView = (TextView) itemView.findViewById(R.id.email);
+            mUsernameTextView = (TextView) itemView.findViewById(R.id.friend_username);
+            mEmailTextView = (TextView) itemView.findViewById(R.id.friend_email);
         }
 
         public void bind(Friend friend) {
@@ -75,8 +75,8 @@ public class FriendListFragment extends Fragment {
 
         private List<Friend> mFriends;
 
-        public FriendAdapter(List<Friend> crimes) {
-            mFriends = crimes;
+        public FriendAdapter(List<Friend> friends) {
+            mFriends = friends;
         }
 
         @Override

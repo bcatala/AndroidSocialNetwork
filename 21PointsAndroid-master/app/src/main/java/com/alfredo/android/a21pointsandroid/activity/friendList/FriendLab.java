@@ -33,7 +33,7 @@ public class FriendLab {
         return mFriends;
     }
 
-    public Friend getCrime(UUID id) {
+    public Friend getFriend(UUID id) {
         for (Friend friend : mFriends) {
             if (friend.getId().equals(id)) {
                 return friend;

@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
@@ -20,6 +22,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private String token;
     private User user;
 
+    private Button mFriendListButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +31,16 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
         this.token = getIntent().getStringExtra("token");
 
-        RestAPIManager.getInstance().getUserAccount(this, token);
+        //RestAPIManager.getInstance().getUserAccount(this, token);
 
+        mFriendListButton = (Button) findViewById(R.id.friends);
+        mFriendListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 
