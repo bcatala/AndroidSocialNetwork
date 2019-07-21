@@ -30,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private Button mFriendListButton;
     private Button mSearchUserButton;
     private Button mInvitationButton;
+    private Button mMessageButton;
     public static ArrayList<Invitation> receivedInvitations;
 
 
@@ -70,7 +71,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             }
         });
 
-        mInvitationButton= (Button) findViewById(R.id.invitations);
+        mInvitationButton = (Button) findViewById(R.id.invitations);
         mInvitationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +81,19 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             }
         });
 
+        mMessageButton = (Button) findViewById(R.id.messages);
+        mMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRandomChat();
+            }
+        });
+    }
+
+    public void startRandomChat(){
+        Intent i = new Intent(MainMenuActivity.this, SearchChatActivity.class);
+
+        startActivity(i);
     }
 
     private InviteCallBack getContext() {

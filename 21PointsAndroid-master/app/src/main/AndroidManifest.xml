@@ -32,6 +32,9 @@
             android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
+            android:name=".activity.SearchChatActivity"
+            android:label="Random Chat" />
+        <activity
             android:name=".activity.friendList.FriendListActivity"
             android:label="Friend List" />
         <activity
