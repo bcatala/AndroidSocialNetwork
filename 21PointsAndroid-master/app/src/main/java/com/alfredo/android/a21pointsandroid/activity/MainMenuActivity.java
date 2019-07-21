@@ -17,17 +17,21 @@ import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack {
+public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack,InviteCallBack {
 
     private String token;
     private User user;
 
     private Button mFriendListButton;
     private Button mSearchUserButton;
+    private Button mInvitationButton;
+    public static ArrayList<Invitation> receivedInvitations;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,21 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             }
         });
 
+        mInvitationButton= (Button) findViewById(R.id.invitations);
+        mInvitationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RestAPIManager.getInstance().getAllInvitations(getContext());
+
+            }
+        });
+
+    }
+
+    private InviteCallBack getContext() {
+
+        return this;
     }
 
     @Override
@@ -87,6 +106,23 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     @Override
     public void onGetUserInfo(User body){
 
+    }
+
+    @Override
+    public void onGetInvitation(Invitation body) {
+
+    }
+
+    @Override
+    public void onReciveInvitations(ArrayList<Invitation> body) {
+        receivedInvitations = body;
+        Intent i = new Intent(MainMenuActivity.this, InvitationActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        i.putExtras(bundle);
+
+        startActivity(i);
     }
 
     @Override

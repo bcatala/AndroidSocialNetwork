@@ -245,4 +245,26 @@ public class RestAPIManager {
             }
         });
     }
+
+    public synchronized void getAllInvitations(final InviteCallBack inviteCallBack) {
+        Call<ArrayList<Invitation>> call = restApiService.getAllInvitations( "Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<ArrayList<Invitation>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Invitation>> call, Response<ArrayList<Invitation>> response) {
+                if (response.isSuccessful()) {
+                    inviteCallBack.onReciveInvitations(response.body());
+                } else {
+                    System.out.println(response.toString());
+                    System.out.println(response.body());
+                    inviteCallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Invitation>> call, Throwable t) {
+                inviteCallBack.onFailure(t);
+            }
+        });
+    }
 }

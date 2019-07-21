@@ -43,4 +43,7 @@ public interface RestAPIService {
     Call<ArrayList<UserProfile>> searchAllUserProfiles(@Header("Authorization") String token);
     @POST("/api/invite/{userId}")
     Call<Invitation> inviteUser(@Path("userId") Integer userId, @Header("Authorization") String token);
+
+    @GET("/api/invitations")
+    Call<ArrayList<Invitation>> getAllInvitations(@Header("Authorization") String token);
 }

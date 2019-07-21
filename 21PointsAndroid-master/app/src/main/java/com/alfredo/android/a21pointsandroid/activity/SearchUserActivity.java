@@ -117,4 +117,9 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
         mInviteButton.setText("SENT!");
     }
 
+    @Override
+    public void onReciveInvitations(ArrayList<Invitation> body) {
+
+    }
+
 }
