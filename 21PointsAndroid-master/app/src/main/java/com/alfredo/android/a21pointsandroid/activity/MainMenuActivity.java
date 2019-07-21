@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
@@ -91,7 +92,10 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     }
 
     public void startRandomChat(){
-        Intent i = new Intent(MainMenuActivity.this, SearchChatActivity.class);
+
+
+
+        Intent i = new Intent(MainMenuActivity.this, ChatroomListActivity.class);
 
         startActivity(i);
     }

@@ -41,6 +41,12 @@
             android:name=".activity.friendList.FriendActivity"
             android:label="Friend Info" />
         <activity
+            android:name=".activity.chatroom.ChatroomActivity"
+            android:label="Chatrooms" />
+        <activity
+            android:name=".activity.chatroom.ChatroomListActivity"
+            android:label="Chatrooms" />
+        <activity
             android:name=".activity.SearchUserActivity"
             android:label="Search User" />
         <activity android:name=".activity.HomeActivity">

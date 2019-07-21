@@ -14,13 +14,16 @@ public class SearchChatActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchrandom);
-        new Handler().postDelayed(new Runnable() {
+/*        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent homeIntent = new Intent(SearchChatActivity.this, InvitationActivity.class);
                 startActivity(homeIntent);
                 finish();
             }
-        }, SPASH_TIME_OUT);
+        }, SPASH_TIME_OUT);*/
+
+        Intent homeIntent = new Intent(SearchChatActivity.this, InvitationActivity.class);
+        startActivity(homeIntent);
     }
 }
