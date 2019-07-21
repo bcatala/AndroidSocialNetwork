@@ -1,11 +1,14 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
@@ -264,6 +267,66 @@ public class RestAPIManager {
             @Override
             public void onFailure(Call<ArrayList<Invitation>> call, Throwable t) {
                 inviteCallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getChatrooms(final ChatroomAPICallBack chatroomAPICallBack) {
+        Call<ArrayList<Chatroom>> call = restApiService.getChatrooms( "Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<ArrayList<Chatroom>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Chatroom>> call, Response<ArrayList<Chatroom>> response) {
+                if (response.isSuccessful()) {
+                    chatroomAPICallBack.onGetChatrooms(response.body());
+                } else {
+                    chatroomAPICallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Chatroom>> call, Throwable t) {
+                chatroomAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getMessages(final ChatroomAPICallBack chatroomAPICallBack, int id) {
+        Call<Chatroom> call = restApiService.getMessages(id, "Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<Chatroom>() {
+            @Override
+            public void onResponse(Call<Chatroom> call, Response<Chatroom> response) {
+                if (response.isSuccessful()) {
+                    chatroomAPICallBack.onGetMessages(response.body());
+                } else {
+                    chatroomAPICallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Chatroom> call, Throwable t) {
+                chatroomAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getDirectMessage(final ChatroomAPICallBack chatroomAPICallBack) {
+        Call<ArrayList<Direct_Message>> call = restApiService.getDirectMessage("Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<ArrayList<Direct_Message>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Direct_Message>> call, Response<ArrayList<Direct_Message>> response) {
+                if (response.isSuccessful()) {
+                    chatroomAPICallBack.onGetDirectMessage(response.body());
+                } else {
+                    chatroomAPICallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Direct_Message>> call, Throwable t) {
+                chatroomAPICallBack.onFailure(t);
             }
         });
     }

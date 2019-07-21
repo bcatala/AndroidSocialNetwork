@@ -60,7 +60,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="search user" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="--------------------------------------------------------------------------------"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search by Id"
+                android:textAlignment="center"
+                android:textSize="18dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_id_chat"
+                    android:hint="id"
+                    />
+                <Button
+                    android:id="@+id/search_chatroom"
+                    android:layout_width="268dp"
+                    android:layout_height="wrap_content"
+                    android:text="search chatroom" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_id_profile"
+                    android:hint="id"
+                    />
+                <Button
+                    android:id="@+id/search_profile"
+                    android:layout_width="268dp"
+                    android:layout_height="wrap_content"
+                    android:text="search profile" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="--------------------------------------------------------------------------------"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

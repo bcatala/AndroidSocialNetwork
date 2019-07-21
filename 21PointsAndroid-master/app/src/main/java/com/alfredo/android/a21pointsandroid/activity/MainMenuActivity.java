@@ -8,22 +8,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListActivity;
+import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListFragment;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack,InviteCallBack {
+public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack, InviteCallBack, ChatroomAPICallBack {
 
     private String token;
     private User user;
@@ -32,8 +38,17 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private Button mSearchUserButton;
     private Button mInvitationButton;
     private Button mMessageButton;
-    public static ArrayList<Invitation> receivedInvitations;
+    private EditText mIdtoSearchChat;
+    private EditText mIdtoSearchProfile;
+    private Button mSearchChatButton;
+    private Button mSearchProfileButton;
 
+
+    public static ArrayList<Invitation> receivedInvitations;
+    public static ArrayList<Chatroom> allChatrooms;
+    public static Chatroom chat;
+
+    public static ArrayList<Direct_Message> dmessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,15 +101,30 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         mMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startRandomChat();
+                RestAPIManager.getInstance().getChatrooms(getContextChat());
             }
         });
+
+        mIdtoSearchChat = (EditText) findViewById(R.id.text_id_chat);
+        mSearchChatButton = (Button) findViewById(R.id.search_chatroom);
+        mSearchChatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //mIdtoSearchChat.getText();
+                //RestAPIManager.getInstance().getMessages(getContextChat(), Integer.parseInt(mIdtoSearchChat.getText().toString()));
+                RestAPIManager.getInstance().getDirectMessage(getContextChat());
+            }
+        });
+
+        mIdtoSearchProfile = (EditText) findViewById(R.id.text_id_profile);
+        mSearchProfileButton = (Button) findViewById(R.id.search_profile);
+    }
+
+    public InviteCallBack getContextInvite(){
+        return this;
     }
 
     public void startRandomChat(){
-
-
-
         Intent i = new Intent(MainMenuActivity.this, ChatroomListActivity.class);
 
         startActivity(i);
@@ -105,6 +135,10 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         return this;
     }
 
+    private ChatroomAPICallBack getContextChat() {
+
+        return this;
+    }
     @Override
     public void onGetUser(User body){
         this.user = body;
@@ -144,6 +178,19 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     }
 
     @Override
+    public void onGetChatrooms(ArrayList<Chatroom> body) {
+        allChatrooms = body;
+        startRandomChat();
+    }
+
+    @Override
+    public void onGetMessages(Chatroom body) {
+        chat = body;
+        Intent i = new Intent(MainMenuActivity.this, MessageListActivity.class);
+        startActivity(i);
+    }
+
+    @Override
     public void onFailure(Throwable t) {
 
         Log.d("21Points", "onFailure OK " + t.getMessage());
@@ -165,6 +212,17 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    @Override
+    public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
+        dmessage = messages;
+        Intent i = new Intent(getContextClass(), DirectMessagesActivity.class);
+        startActivity(i);
+    }
+
+    public MainMenuActivity getContextClass(){
+        return this;
     }
 
     @Override

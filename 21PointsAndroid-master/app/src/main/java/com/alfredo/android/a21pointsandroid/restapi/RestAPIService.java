@@ -1,5 +1,7 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
+import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
@@ -46,4 +48,13 @@ public interface RestAPIService {
 
     @GET("/api/invitations")
     Call<ArrayList<Invitation>> getAllInvitations(@Header("Authorization") String token);
+
+    @GET("/api/chatrooms")
+    Call<ArrayList<Chatroom>> getChatrooms(@Header("Authorization") String token);
+    @GET("/api/chatrooms/{id}")
+    Call<Chatroom> getMessages(@Path("id") Integer id, @Header("Authorization") String token);
+
+    @GET("/api/direct-messages")
+    Call<ArrayList<Direct_Message>> getDirectMessage(@Header("Authorization") String token);
+
 }

@@ -1,5 +1,6 @@
 package com.alfredo.android.a21pointsandroid.activity.chatroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.InvitationActivity;
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatroomListFragment extends Fragment {
     private RecyclerView mChatroomRecyclerView;
     private ChatroomAdapter mAdapter;
+    public static ArrayList<Message> allInnerMessages;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +49,7 @@ public class ChatroomListFragment extends Fragment {
     }
 
     private class ChatroomHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+            implements View.OnClickListener, ChatroomAPICallBack {
 
         private Chatroom mChatroom;
 
@@ -58,16 +66,49 @@ public class ChatroomListFragment extends Fragment {
 
         public void bind(Chatroom chatroom) {
             mChatroom = chatroom;
-            mTitleTextView.setText(mChatroom.getTitle());
-            mDateTextView.setText(mChatroom.getDate().toString());
+            mTitleTextView.setText(mChatroom.getTopic());
+            mDateTextView.setText(mChatroom.getCreatedDate().toString());
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(),
-                    mChatroom.getTitle() + " clicked!", Toast.LENGTH_SHORT)
-                    .show();
+            RestAPIManager.getInstance().getMessages(getContext(), mChatroom.getId());
+            //
         }
+
+        public ChatroomAPICallBack getContext(){
+            return this;
+        }
+
+        @Override
+        public void onGetChatrooms(ArrayList<Chatroom> body) {
+
+        }
+
+        @Override
+        public void onGetMessages(Chatroom body) {
+            Toast.makeText(getActivity(),
+                    mChatroom.getId() + " clicked!", Toast.LENGTH_SHORT)
+                    .show();
+            //START ACTIVITY CHAT RECYCLER VIEW
+            allInnerMessages = body.getMessages();
+        }
+
+        public ChatroomListFragment.ChatroomHolder getContextFragment(){
+            return this;
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+
+        }
+
+        @Override
+        public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
+
+        }
+
+
     }
 
     private class ChatroomAdapter extends RecyclerView.Adapter<ChatroomHolder> {

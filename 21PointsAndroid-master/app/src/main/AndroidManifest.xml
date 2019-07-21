@@ -47,6 +47,12 @@
             android:name=".activity.chatroom.ChatroomListActivity"
             android:label="Chatrooms" />
         <activity
+            android:name=".activity.Chat.MessageListActivity"
+            android:label="Messages" />
+        <activity
+            android:name=".activity.DirectMessagesActivity"
+            android:label="Direct Messages" />
+        <activity
             android:name=".activity.SearchUserActivity"
             android:label="Search User" />
         <activity android:name=".activity.HomeActivity">

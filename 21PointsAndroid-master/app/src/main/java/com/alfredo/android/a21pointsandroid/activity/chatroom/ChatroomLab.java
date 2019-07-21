@@ -2,6 +2,8 @@ package com.alfredo.android.a21pointsandroid.activity.chatroom;
 
 import android.content.Context;
 
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +23,9 @@ public class ChatroomLab {
 
     private ChatroomLab(Context context) {
         mChatrooms = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < MainMenuActivity.allChatrooms.size(); i++) {
             Chatroom chatroom = new Chatroom();
-            chatroom.setTitle("Chatroom #" + i);
-            chatroom.setSolved(i % 2 == 0);
+            chatroom = MainMenuActivity.allChatrooms.get(i);
             mChatrooms.add(chatroom);
         }
     }

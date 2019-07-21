@@ -1,45 +1,79 @@
 package com.alfredo.android.a21pointsandroid.activity.chatroom;
 
-import java.util.Date;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.alfredo.android.a21pointsandroid.model.User;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Chatroom {
 
-    private UUID mId;
-    private String mTitle;
-    private Date mDate;
-    private boolean mSolved;
+    @SerializedName("admin")
+    @Expose
+    private User admin;
+    @SerializedName("createdDate")
+    @Expose
+    private String createdDate;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("messages")
+    @Expose
+    private ArrayList<Message> messages = null;
+    @SerializedName("participants")
+    @Expose
+    private List<User> participants = null;
+    @SerializedName("topic")
+    @Expose
+    private String topic;
 
-    public Chatroom() {
-        mId = UUID.randomUUID();
-        mDate = new Date();
+    public User getAdmin() {
+        return admin;
     }
 
-    public UUID getId() {
-        return mId;
+    public void setAdmin(User admin) {
+        this.admin = admin;
     }
 
-    public String getTitle() {
-        return mTitle;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setTitle(String title) {
-        mTitle = title;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getDate() {
-        return mDate;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDate(Date date) {
-        mDate = date;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public boolean isSolved() {
-        return mSolved;
+    public ArrayList<Message> getMessages() {
+        return messages;
     }
 
-    public void setSolved(boolean solved) {
-        mSolved = solved;
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
     }
+
+    public List<User> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<User> participants) {
+        this.participants = participants;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
 }

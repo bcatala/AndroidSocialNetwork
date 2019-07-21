@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class FriendListFragment extends Fragment {
             implements View.OnClickListener {
 
         private Friend mFriend;
+        private Button mButton;
 
         private TextView mUsernameTextView;
         private TextView mEmailTextView;
@@ -69,10 +71,8 @@ public class FriendListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            //Toast.makeText(getActivity(), mFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(view.getContext(), FriendActivity.class);
-            view.getContext().startActivity(i);
-            //view.getContext().startActivity(i);
+            Toast.makeText(getActivity(), mFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT).show();
+            mButton = (Button) view.findViewById(R.id.go_profile_user);
         }
     }
 
