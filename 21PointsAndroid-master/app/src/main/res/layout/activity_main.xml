@@ -26,22 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="ANDROID SOCIAL NETWORK!"
+        android:text="Linkedls!"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/menu_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dip"
-        android:text="@string/action_register" />
 
-    <Button
-        android:id="@+id/menu_sign_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_sign_in" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -49,5 +38,17 @@
         android:layout_height="300dp"
         android:layout_marginTop="70dip"
         app:srcCompat="@drawable/socialnetwork" />
+
+    <Button
+        android:id="@+id/menu_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dip"
+        android:text="@string/action_register" />
+    <Button
+        android:id="@+id/menu_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_sign_in" />
 
 </LinearLayout>
