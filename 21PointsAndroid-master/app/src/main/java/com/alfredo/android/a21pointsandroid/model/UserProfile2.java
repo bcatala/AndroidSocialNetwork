@@ -86,12 +86,18 @@ public class UserProfile2 implements Serializable {
     @Expose
     private float weight;
 
-    public UserProfile2() {}
 
-    public UserProfile2(String aboutMe, String filterPreferences, String displayName) { this.aboutMe = aboutMe; this.filterPreferences = filterPreferences; this.displayName = displayName;}
     public UserProfile2(String displayName, Gender gender, String birthday) { this.gender = gender; this.birthDate = birthday; this.displayName = displayName;}
 
     public UserProfile2(String displayName, User user, int id) { this.id = id; this.user = user; this.displayName = displayName;}
+
+    public UserProfile2(String aboutMe, String birthDate, String displayName, String picture, String pictureContentType) {
+        this.aboutMe = aboutMe;
+        this.birthDate = birthDate;
+        this.displayName = displayName;
+        this.picture = picture;
+        this.pictureContentType = pictureContentType;
+    }
 
     public String getAboutMe() {
         return aboutMe;
@@ -275,6 +281,14 @@ public class UserProfile2 implements Serializable {
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public String convertString() {
+        return this.aboutMe + "/" + this.adminChatrooms + "/" + this.banned.toString() + "/" + this.birthDate + "/" +
+                this.displayName + "/" + "ignore" + "/" + this.filterPreferences
+                + "/" + this.gender + "/" + this.height + "/" + this.id.toString() + "/" + "ignore"
+                + "/" + this.picture + "/" + this.pictureContentType + "/" + "ignore" + "/" + "ignore" + "/" + "ignore"
+                + "/" + "ignore" + "/" + "ignore" + "/" + "ignore" + "/" + "ignore" + "/" + "ignore" + "/" + "ignore" + "/" + "ignore";
     }
 
 }

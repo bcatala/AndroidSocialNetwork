@@ -81,6 +81,14 @@ public class UserProfile {
     @Expose
     private Object adminChatrooms;
 
+    public UserProfile(Integer id, String picture, Integer height, Integer weight) {
+        this.id = id;
+        this.picture = picture;
+        this.height = height;
+        this.weight = weight;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -280,5 +288,6 @@ public class UserProfile {
     public void setAdminChatrooms(Object adminChatrooms) {
         this.adminChatrooms = adminChatrooms;
     }
+
 
 }

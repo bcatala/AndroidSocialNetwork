@@ -22,17 +22,20 @@ import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack, InviteCallBack, ChatroomAPICallBack {
+public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack, InviteCallBack, ChatroomAPICallBack, ProfileAPICallback {
 
     private String token;
     private User user;
+    private UserProfile2 userProfile2;
 
     private Button mFriendListButton;
     private Button mSearchUserButton;
@@ -56,6 +59,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         setContentView(R.layout.activity_mainmenu);
 
         this.token = getIntent().getStringExtra("token");
+        this.userProfile2 = getUserProfileInfo(getIntent().getStringExtra("profile"));
 
         RestAPIManager.getInstance().getUserAccount(this, token);
 
@@ -155,6 +159,12 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         startActivity(i);*/
     }
 
+   private synchronized UserProfile2 getUserProfileInfo(String userProfile2) {
+        String[] elements = userProfile2.split("/");
+
+        return new UserProfile2(elements[0],elements[3],elements[4], elements[11], elements[12]);
+    }
+
     @Override
     public void onGetUserInfo(User body){
 
@@ -188,6 +198,12 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         chat = body;
         Intent i = new Intent(MainMenuActivity.this, MessageListActivity.class);
         startActivity(i);
+    }
+
+
+    @Override
+    public void onGetCurrentProfile(UserProfile2 currentProfile) {
+
     }
 
     @Override
@@ -236,7 +252,12 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     }
 
     @Override
-    public void onUserProfileFound(UserProfile body){
+    public void onUserProfileFound(UserProfile body) {
+
+    }
+
+    @Override
+    public void onUserProfileFound2(UserProfile2 body){
 
     }
 

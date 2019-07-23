@@ -8,6 +8,7 @@ import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public interface RestAPIService {
     Call<User> getUserInfo(@Header("Authorization") String token);
     @GET("/api/account")
     Call<User> getUserAccount(@Header("Authorization") String token);
+
+    @GET("/api/my-profile")
+    Call<UserProfile2> getCurrentUserProfile(@Header("Authorization") String token);
 
     @GET("/api/users")
     Call<ArrayList<User>> getAllUsers(@Header("Authorization") String token);

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
@@ -27,6 +28,7 @@ import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ import java.util.LinkedList;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack, MyFriendsAPICallBack {
+public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack, MyFriendsAPICallBack, ProfileAPICallback {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -46,8 +48,10 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     private String email;
     private String password;
     private User user;
-    public static String token;
 
+
+    public static UserProfile2 userProfile2;
+    public static String token;
     public static ArrayList<User> allUsers;
     public static ArrayList<UserProfile> myFriends;
 
@@ -123,6 +127,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
             this.email = email;
             this.password = password;
             RestAPIManager.getInstance().getUserToken(email, password, this);
+
+
         }
     }
 
@@ -161,6 +167,15 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
         this.token = userToken.getIdToken();
 
         RestAPIManager.getInstance().getAllUsers(this, token);
+        RestAPIManager.getInstance().getCurrentUserProfile(this,token);
+
+
+    }
+
+    @Override
+    public void onGetCurrentProfile(UserProfile2 currentProfile) {
+
+        this.userProfile2 = currentProfile;
 
     }
 
@@ -192,6 +207,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetUser(User body){
         this.user = body;
 
+
+
        /* Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
 
         i.putExtra("login", this.user.getLogin());
@@ -221,7 +238,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
         i.putExtra("token", this.token);
-        //i.putExtra("user", this.user.convertString());
+        i.putExtra("profile", this.userProfile2.convertString());
+
 
         startActivity(i);
     }
@@ -232,7 +250,12 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     }
 
     @Override
-    public void onUserProfileFound(UserProfile body){
+    public void onUserProfileFound(UserProfile body) {
+
+    }
+
+    @Override
+    public void onUserProfileFound2(UserProfile2 body) {
 
     }
 

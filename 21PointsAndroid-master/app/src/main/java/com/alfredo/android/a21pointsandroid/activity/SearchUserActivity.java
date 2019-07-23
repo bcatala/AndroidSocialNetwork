@@ -12,6 +12,7 @@ import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
@@ -100,6 +101,11 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
     @Override
     public void onUserProfileFound(UserProfile body){
 
+
+    }
+
+    @Override
+    public void onUserProfileFound2(UserProfile2 body) {
 
     }
 
