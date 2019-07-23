@@ -34,12 +34,15 @@ public class FriendListFragment extends Fragment {
 
         updateUI();
 
+
+
+
         return view;
     }
 
 
     private void updateUI() {
-        FriendLab friendLab = FriendLab.get(getActivity());
+         FriendLab friendLab = FriendLab.get(getActivity());
         List<Friend> friends = friendLab.getFriends();
 
         mAdapter = new FriendAdapter(friends);

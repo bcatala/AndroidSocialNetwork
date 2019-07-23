@@ -8,22 +8,13 @@
     android:background="@color/White"
     android:padding="8dp">
 
-    <Button
-        android:id="@+id/verperfil__button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="368dp"
-        android:layout_height="20dp"
-        android:background="@color/White"
-        android:text="ver_perfil"
-        android:textColor="@color/colorPrimary" />
-
     <TextView
         android:id="@+id/friend_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent2"
         android:text="Username"
-        android:textSize="30dp"/>
+        android:textSize="25dp"/>
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,7 +55,14 @@
 
 </LinearLayout>
 
-
+    <Button
+        android:id="@+id/verperfil__button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="368dp"
+        android:layout_height="20dp"
+        android:background="@color/White"
+        android:text="ver_perfil"
+        android:textColor="@color/colorPrimary" />
 
 
 </LinearLayout>

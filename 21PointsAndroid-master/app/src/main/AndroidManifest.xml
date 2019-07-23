@@ -22,6 +22,10 @@
             android:name=".activity.LoginActivity"
             android:label="Linkedls"></activity>
         <activity
+            android:name=".activity.AuxActivity"
+            android:label="Linkedls"></activity>
+
+        <activity
             android:name=".activity.MainMenuActivity"
             android:label="Linkedls"></activity>
         <activity

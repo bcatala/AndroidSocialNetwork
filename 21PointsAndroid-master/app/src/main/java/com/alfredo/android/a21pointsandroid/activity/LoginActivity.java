@@ -50,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
     public static ArrayList<User> allUsers;
     public static ArrayList<UserProfile> myFriends;
+    public static ArrayList<UserProfile> AllProfiles;
+    public static int profil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+        profil=1;
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {

@@ -17,6 +17,7 @@ import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListFragment;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendFragment;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class MainMenuActivity extends AppCompatActivity implements UserAPICallBack, InviteCallBack, ChatroomAPICallBack {
 
     private String token;
-    private User user;
+    public static User user;
 
     private Button mFriendListButton;
     private Button mSearchUserButton;
@@ -62,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         mFriendListButton = (Button) findViewById(R.id.friends);
         mFriendListButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
                 Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
 
                 Bundle bundle = new Bundle();
@@ -243,6 +244,15 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
     @Override
     public void onGetAllUserProfiles(ArrayList<UserProfile> body){
+
+    }
+
+    public  void proba(){
+
+        Intent i = new Intent(MainMenuActivity.this, LoginActivity.class);
+
+        startActivity(i);
+
 
     }
 

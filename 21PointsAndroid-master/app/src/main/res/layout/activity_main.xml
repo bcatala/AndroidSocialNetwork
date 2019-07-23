@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/fondonubes"
     tools:context=".activity.MainActivity">
 
     <TextView
@@ -19,6 +20,7 @@
         android:gravity="center"
         android:text="WELCOME TO"
         android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 
     <TextView
@@ -27,7 +29,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Linkedls!"
-        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
 
@@ -37,18 +40,23 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="70dip"
-        app:srcCompat="@drawable/socialnetwork" />
+        app:srcCompat="@drawable/fotologin" />
 
     <Button
         android:id="@+id/menu_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dip"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorAccent3"
         android:text="@string/action_register" />
     <Button
         android:id="@+id/menu_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorAccent3"
         android:text="@string/action_sign_in" />
 
 </LinearLayout>

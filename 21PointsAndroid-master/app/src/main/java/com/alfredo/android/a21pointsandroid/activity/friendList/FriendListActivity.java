@@ -15,6 +15,7 @@ public class FriendListActivity extends SingleFragmentActivity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
 
+
         this.user = (User) bundle.getSerializable("user");
 
         return new FriendListFragment();

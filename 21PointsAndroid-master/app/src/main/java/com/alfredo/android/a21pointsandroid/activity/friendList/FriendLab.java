@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class FriendLab {
-    private static FriendLab sFriendLab;
+    public static FriendLab sFriendLab;
 
-    private List<Friend> mFriends;
+    public static List<Friend> mFriends;
 
     public static FriendLab get(Context context) {
         if (sFriendLab == null) {
@@ -24,14 +24,32 @@ public class FriendLab {
 
     private FriendLab(Context context) {
         mFriends = new ArrayList<>();
-        for (int i = 0; i < LoginActivity.myFriends.size(); i++) {
+        if (LoginActivity.profil == 1) {
+            for (int i = 0; i < LoginActivity.myFriends.size(); i++) {
+                Friend friend = new Friend();
+                friend.setUsername(LoginActivity.myFriends.get(i).getUser().getLogin());
+                friend.setEmail(LoginActivity.myFriends.get(i).getUser().getEmail());
+                mFriends.add(friend);
+            }
+
+        } else {
+
+
+            for (int i = 0; i < LoginActivity.AllProfiles.size(); i++) {
+                Friend friend = new Friend();
+                friend.setUsername(LoginActivity.AllProfiles.get(i).getUser().getLogin());
+                friend.setEmail(LoginActivity.AllProfiles.get(i).getUser().getEmail());
+                mFriends.add(friend);
+
+            }
             Friend friend = new Friend();
-            friend.setUsername(LoginActivity.myFriends.get(i).getUser().getLogin());
-            friend.setEmail(LoginActivity.myFriends.get(i).getUser().getEmail());
+            friend.setUsername(LoginActivity.myFriends.get(0).getUser().getLogin());
+            friend.setEmail(LoginActivity.myFriends.get(0).getUser().getEmail());
             mFriends.add(friend);
+
+
         }
     }
-
     public List<Friend> getFriends() {
         return mFriends;
     }

@@ -11,9 +11,13 @@ import android.widget.TextView;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
-public class ProfileActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ProfileActivity extends AppCompatActivity implements UserAPICallBack {
     private Button GotoMenu;
     private TextView username_id;
 
@@ -24,10 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button mGotoMenu = (Button) findViewById(R.id.GotoMenu);
 
-        String email = getIntent().getStringExtra("email");
+       // String email = getIntent().getStringExtra("email");
 
-        TextView textView4= findViewById(R.id.textView4);
-        textView4.setText(email);
+        TextView textView4= findViewById(R.id.textView3);
+        textView4.setText(MainMenuActivity.user.getLogin());
 
         //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
 
@@ -42,6 +46,41 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });*/
+    }
+
+    @Override
+    public void onGetUserInfo(User user) {
+
+    }
+
+    @Override
+    public void onGetUser(User body) {
+
+    }
+
+    @Override
+    public void onGetAllUsers(ArrayList<User> body) {
+
+    }
+
+    @Override
+    public void onUserFound(User body) {
+
+    }
+
+    @Override
+    public void onUserProfileFound(UserProfile body) {
+
+    }
+
+    @Override
+    public void onGetAllUserProfiles(ArrayList<UserProfile> body) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
     }
 }
 
