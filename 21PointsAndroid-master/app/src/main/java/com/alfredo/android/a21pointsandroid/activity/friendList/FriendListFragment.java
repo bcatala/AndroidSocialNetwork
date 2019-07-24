@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.SearchChatActivity;
+import com.alfredo.android.a21pointsandroid.activity.SearchUserActivity;
 
 import java.util.List;
 
@@ -62,11 +65,12 @@ public class FriendListFragment extends Fragment {
     private class FriendHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        private Friend mFriend;
-       // private Button mButton;
+        private Friend misFriend;
+        public  Button mButton;
 
-        private TextView mUsernameTextView;
-        private TextView mEmailTextView;
+        public TextView mUsernameTextView;
+        public TextView mEmailTextView;
+        public TextView maboutme;
 
         public FriendHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_user, parent, false));
@@ -74,19 +78,35 @@ public class FriendListFragment extends Fragment {
 
             mUsernameTextView = (TextView) itemView.findViewById(R.id.friend_username);
             mEmailTextView = (TextView) itemView.findViewById(R.id.friend_email);
+            maboutme = (TextView) itemView.findViewById(R.id.frase_abautme2);
+            mButton = (Button) itemView.findViewById(R.id.verperfil__button);
         }
 
         public void bind(Friend friend) {
-            mFriend = friend;
-            mUsernameTextView.setText(mFriend.getUsername());
-            mEmailTextView.setText(mFriend.getEmail());
-        }
+            misFriend = friend;
+          //  mUsernameTextView.setText(friend.getUsername());
 
+            int a=0;
+         //   mEmailTextView.setText(friend.getEmail());
+          //  maboutme.setText(friend.getAboutme());
+
+        }
         @Override
         public void onClick(View view) {
-            Toast.makeText(getActivity(), mFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), misFriend.getUsername() + " clicked!", Toast.LENGTH_SHORT).show();
             //mButton = (Button) view.findViewById(R.id.go_profile_user);
+            SingleFragmentActivity.surt=1;
+            SingleFragmentActivity.myFriend=misFriend;
+
+            Intent i = new Intent(SingleFragmentActivity.a2, ProfileActivity.class);
+            startActivity(i);
+            //aqui pica un user
+
+
+
+
         }
+
     }
 
     private class FriendAdapter extends RecyclerView.Adapter<FriendHolder> {

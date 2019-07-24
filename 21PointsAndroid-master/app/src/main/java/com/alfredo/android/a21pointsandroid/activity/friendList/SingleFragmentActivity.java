@@ -28,70 +28,99 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     private static  EditText Profile_to_search  ;
     private String login;
     public static User user;
+    public static Friend myFriend;
+    public static int surt;
+    static SingleFragmentActivity a2;
 
     protected abstract Fragment createFragment();
+    public  void proba(){
 
+        Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity.class);
+
+        startActivity(i);
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friendlist_fragment);
-        Profile_to_search = (EditText) findViewById(R.id.Profile_to_search);
-        Button messages = (Button) findViewById(R.id.message_button);
-        messages.setOnClickListener(new View.OnClickListener() {
-            @Override
 
-            public void onClick(View v) {
-                setLogin(Profile_to_search.getText().toString());
-LoginActivity.profil=0;
-                Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity.class);
-                i.putExtra("login",login);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_friendlist_fragment);
+            Profile_to_search = (EditText) findViewById(R.id.Profile_to_search);
 
-                startActivity(i);
-                //mInviteButton.setText("INVITE");
-               // RestAPIManager.getInstance().searchUser(getContex(), LoginActivity.token, Profile_to_search.getText().toString());
-                //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
+
+         a2=SingleFragmentActivity.this;
+
+
+
+
+
+            Button messages = (Button) findViewById(R.id.message_button);
+            messages.setOnClickListener(new View.OnClickListener() {
+                @Override
+
+                public void onClick(View v) {
+                    setLogin(Profile_to_search.getText().toString());
+                    LoginActivity.profil = 0;
+                    Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity.class);
+                    i.putExtra("login", login);
+
+                    startActivity(i);
+                    //mInviteButton.setText("INVITE");
+                    // RestAPIManager.getInstance().searchUser(getContex(), LoginActivity.token, Profile_to_search.getText().toString());
+                    //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
+                }
+
+            });
+
+            Button mfriendButton = (Button) findViewById(R.id.perfil__button);
+            mfriendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    LoginActivity.profil = 1;
+                    Intent i = new Intent(SingleFragmentActivity.this, AuxActivity.class);
+                    i.putExtra("a", 1);
+
+
+                    startActivity(i);
+                }
+            });
+
+            Button mallusersButton = (Button) findViewById(R.id.HOME__button);
+            mallusersButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    LoginActivity.profil = 0;
+                    Intent i2 = new Intent(SingleFragmentActivity.this, AuxActivity.class);
+                    i2.putExtra("a", 0);
+
+
+                    startActivity(i2);
+                }
+            });
+
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+
+            if (fragment == null) {
+                fragment = createFragment();
+                fm.beginTransaction()
+                        .add(R.id.fragment_container, fragment)
+                        .commit();
             }
 
-        });
-
-        Button mfriendButton = (Button) findViewById(R.id.perfil__button);
-        mfriendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               LoginActivity.profil=1;
-                Intent i = new Intent(SingleFragmentActivity.this, AuxActivity.class);
-                i.putExtra("a",1);
-
-
-                startActivity(i);
-            }
-        });
-
-        Button mallusersButton = (Button) findViewById(R.id.HOME__button);
-        mallusersButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                LoginActivity.profil=0;
-                Intent i2 = new Intent(SingleFragmentActivity.this, AuxActivity.class);
-                i2.putExtra("a",0);
-
-
-                startActivity(i2);
-            }
-        });
-
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-
-        if (fragment == null) {
-            fragment = createFragment();
-            fm.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
-                    .commit();
-        }
     }
+
+    public  SingleFragmentActivity a(){
+
+        SingleFragmentActivity a2=SingleFragmentActivity.this;
+
+        return a2;
+    }
+
+
     private void setLogin(String login) {
         this.login = login;
     }

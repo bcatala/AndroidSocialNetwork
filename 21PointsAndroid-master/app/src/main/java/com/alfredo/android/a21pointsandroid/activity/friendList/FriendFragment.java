@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
@@ -30,6 +31,7 @@ public class FriendFragment extends Fragment implements UserAPICallBack {
     private Friend mFriend;
     private TextView mUsernameField;
     private TextView mEmailField;
+    private TextView mAboutme;
     private Button messages;
     private String login ;
     private EditText Profile_to_search;
@@ -57,9 +59,13 @@ public class FriendFragment extends Fragment implements UserAPICallBack {
         mEmailField = (TextView) v.findViewById(R.id.friend_email);
         mEmailField.setText(mFriend.getEmail());
 
+        mAboutme = (TextView) v.findViewById(R.id.frase_abautme2);
+        mAboutme.setText(mFriend.getAboutme());
+
         Profile_to_search = (EditText) v.findViewById(R.id.Profile_to_search);
 
         messages = (Button) v.findViewById(R.id.message_button);
+
         messages.setOnClickListener(new OnClickListener() {
             @Override
 
@@ -75,6 +81,8 @@ public class FriendFragment extends Fragment implements UserAPICallBack {
 
         return v;
     }
+
+
 
     @Override
     public void onGetUserInfo(User user) {

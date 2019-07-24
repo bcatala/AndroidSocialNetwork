@@ -34,14 +34,23 @@ public class FriendLabAll {
 
         } else {
 
-            
-            Friend friend = new Friend();
-            friend.setUsername(LoginActivity.myFriends.get(0).getUser().getLogin());
-            friend.setEmail(LoginActivity.myFriends.get(0).getUser().getEmail());
-            mFriends.add(friend);
+            int b= LoginActivity.AllProfiles.size();
+            for (int i = 0; i < LoginActivity.AllProfiles.size(); i++) {
+                Friend friend = new Friend();
+                friend.setUsername(LoginActivity.AllProfiles.get(i).getUser().getLogin());
+                friend.setEmail(LoginActivity.AllProfiles.get(i).getUser().getEmail());
+                try {
 
 
-        }
+                    friend.setAboutme(LoginActivity.AllProfiles.get(i).getAboutMe().toString());
+                } catch (NullPointerException e) {
+
+                    friend.setAboutme("No tinc cap frase");
+                }
+                mFriends.add(friend);
+
+
+            }}
     }
     public List<Friend> getFriends() {
         return mFriends;

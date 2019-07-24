@@ -19,10 +19,10 @@ public class UserProfile {
     private Object pictureContentType;
     @SerializedName("height")
     @Expose
-    private Integer height;
+    private float height;
     @SerializedName("weight")
     @Expose
-    private Integer weight;
+    private float weight;
     @SerializedName("unitSystem")
     @Expose
     private String unitSystem;
@@ -113,7 +113,7 @@ public class UserProfile {
         this.pictureContentType = pictureContentType;
     }
 
-    public Integer getHeight() {
+    public float getHeight() {
         return height;
     }
 
@@ -121,7 +121,7 @@ public class UserProfile {
         this.height = height;
     }
 
-    public Integer getWeight() {
+    public float getWeight() {
         return weight;
     }
 

@@ -8,6 +8,7 @@ public class Friend {
     private UUID mId;
     private String mUsername;
     private String mEmail;
+    private String Aboutme;
     private boolean mBlocked;
 
     public Friend() {
@@ -34,11 +35,20 @@ public class Friend {
         mEmail = email;
     }
 
+
     public boolean isBlocked() {
         return mBlocked;
     }
 
     public void setBlocked(boolean blocked) {
         mBlocked = blocked;
+    }
+
+    public String getAboutme() {
+        return Aboutme;
+    }
+
+    public void setAboutme(String aboutme) {
+        Aboutme = aboutme;
     }
 }

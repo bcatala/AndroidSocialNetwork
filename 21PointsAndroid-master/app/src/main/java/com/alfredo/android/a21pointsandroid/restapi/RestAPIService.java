@@ -8,6 +8,7 @@ import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public interface RestAPIService {
 
     @GET("/api/profiles")
     Call<ArrayList<UserProfile>> searchAllUserProfiles(@Header("Authorization") String token);
+
     @POST("/api/invite/{userId}")
     Call<Invitation> inviteUser(@Path("userId") Integer userId, @Header("Authorization") String token);
 

@@ -29,17 +29,32 @@ public class FriendLab {
                 Friend friend = new Friend();
                 friend.setUsername(LoginActivity.myFriends.get(i).getUser().getLogin());
                 friend.setEmail(LoginActivity.myFriends.get(i).getUser().getEmail());
+                try{
+                friend.setAboutme(LoginActivity.myFriends.get(i).getAboutMe().toString());
+            }catch (NullPointerException e){
+
+                friend.setAboutme("No tinc cap frase");
+            }
                 mFriends.add(friend);
             }
 
         } else {
 
+            int b= LoginActivity.AllProfiles.size();
+            for (int i = 0; i < LoginActivity.AllProfiles.size(); i++) {
+                Friend friend = new Friend();
+                friend.setUsername(LoginActivity.AllProfiles.get(i).getUser().getLogin());
+                friend.setEmail(LoginActivity.AllProfiles.get(i).getUser().getEmail());
+                try {
 
 
-            Friend friend = new Friend();
-            friend.setUsername(LoginActivity.myFriends.get(0).getUser().getLogin());
-            friend.setEmail(LoginActivity.myFriends.get(0).getUser().getEmail());
-            mFriends.add(friend);
+                friend.setAboutme(LoginActivity.AllProfiles.get(i).getAboutMe().toString());
+                }catch (NullPointerException e){
+
+                    friend.setAboutme("No tinc cap frase");
+                }
+                mFriends.add(friend);
+            }
 
 
         }

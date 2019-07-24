@@ -249,7 +249,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
     public  void proba(){
 
-        Intent i = new Intent(MainMenuActivity.this, LoginActivity.class);
+        Intent i = new Intent(MainMenuActivity.this, ProfileActivity.class);
 
         startActivity(i);
 

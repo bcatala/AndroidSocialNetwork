@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.callback.LoginAPICallBack;
 import com.alfredo.android.a21pointsandroid.model.Points;
 import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
@@ -222,11 +223,13 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         this.myFriends = myfriends;
 
-        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-        i.putExtra("token", this.token);
-        //i.putExtra("user", this.user.convertString());
+       RestAPIManager.getInstance().searchAllUserProfiles(getContext(),token);
+    }
 
-        startActivity(i);
+    private UserAPICallBack getContext(){
+
+
+        return this;
     }
 
     @Override
@@ -242,6 +245,14 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
     @Override
     public void onGetAllUserProfiles(ArrayList<UserProfile> body){
+        AllProfiles=body;
+
+        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        i.putExtra("token", this.token);
+        //i.putExtra("user", this.user.convertString());
+
+        startActivity(i);
+
 
     }
 

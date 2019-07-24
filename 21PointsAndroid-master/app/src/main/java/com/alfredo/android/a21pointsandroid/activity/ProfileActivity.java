@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendFragment;
+import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
@@ -20,6 +22,9 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity implements UserAPICallBack {
     private Button GotoMenu;
     private TextView username_id;
+    private TextView UsernameField;
+    private TextView mEmailField;
+    private TextView mAboutme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +35,14 @@ public class ProfileActivity extends AppCompatActivity implements UserAPICallBac
 
        // String email = getIntent().getStringExtra("email");
 
-        TextView textView4= findViewById(R.id.textView3);
-        textView4.setText(MainMenuActivity.user.getLogin());
+        UsernameField = (TextView) findViewById(R.id.friend_username);
+        UsernameField.setText(SingleFragmentActivity.myFriend.getUsername());
+
+        mEmailField = (TextView) findViewById(R.id.friend_email);
+        mEmailField.setText(SingleFragmentActivity.myFriend.getEmail());
+
+        mAboutme = (TextView) findViewById(R.id.frase_abautme2);
+        mAboutme.setText(SingleFragmentActivity.myFriend.getAboutme());
 
         //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
 
