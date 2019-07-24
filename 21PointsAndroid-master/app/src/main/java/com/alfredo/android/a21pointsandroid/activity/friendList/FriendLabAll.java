@@ -34,14 +34,7 @@ public class FriendLabAll {
 
         } else {
 
-
-            for (int i = 0; i < LoginActivity.AllProfiles.size(); i++) {
-                Friend friend = new Friend();
-                friend.setUsername(LoginActivity.AllProfiles.get(i).getUser().getLogin());
-                friend.setEmail(LoginActivity.AllProfiles.get(i).getUser().getEmail());
-                mFriends.add(friend);
-
-            }
+            
             Friend friend = new Friend();
             friend.setUsername(LoginActivity.myFriends.get(0).getUser().getLogin());
             friend.setEmail(LoginActivity.myFriends.get(0).getUser().getEmail());
