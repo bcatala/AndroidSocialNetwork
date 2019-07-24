@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class FriendLab {
-    public static FriendLab sFriendLab;
+public class FriendLabAll {
+    public static FriendLabAll sFriendLab;
 
     public static List<Friend> mFriends;
 
-    public static FriendLab get(Context context) {
+    public static FriendLabAll get(Context context) {
         if (sFriendLab == null) {
-            sFriendLab = new FriendLab(context);
+            sFriendLab = new FriendLabAll(context);
         }
 
         return sFriendLab;
     }
 
-    private FriendLab(Context context) {
+    private FriendLabAll(Context context) {
         mFriends = new ArrayList<>();
         if (LoginActivity.profil == 1) {
             for (int i = 0; i < LoginActivity.myFriends.size(); i++) {
@@ -35,7 +35,13 @@ public class FriendLab {
         } else {
 
 
+            for (int i = 0; i < LoginActivity.AllProfiles.size(); i++) {
+                Friend friend = new Friend();
+                friend.setUsername(LoginActivity.AllProfiles.get(i).getUser().getLogin());
+                friend.setEmail(LoginActivity.AllProfiles.get(i).getUser().getEmail());
+                mFriends.add(friend);
 
+            }
             Friend friend = new Friend();
             friend.setUsername(LoginActivity.myFriends.get(0).getUser().getLogin());
             friend.setEmail(LoginActivity.myFriends.get(0).getUser().getEmail());

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 
 import java.util.List;
@@ -42,11 +43,20 @@ public class FriendListFragment extends Fragment {
 
 
     private void updateUI() {
-         FriendLab friendLab = FriendLab.get(getActivity());
-        List<Friend> friends = friendLab.getFriends();
+         if(LoginActivity.profil==1) {
+             FriendLab friendLab = FriendLab.get(getActivity());
+             List<Friend> friends = friendLab.getFriends();
 
-        mAdapter = new FriendAdapter(friends);
-        mFriendRecyclerView.setAdapter(mAdapter);
+             mAdapter = new FriendAdapter(friends);
+             mFriendRecyclerView.setAdapter(mAdapter);
+         }else{
+             FriendLabAll friendLab = FriendLabAll.get(getActivity());
+             List<Friend> friends = friendLab.getFriends();
+
+             mAdapter = new FriendAdapter(friends);
+             mFriendRecyclerView.setAdapter(mAdapter);
+
+         }
     }
 
     private class FriendHolder extends RecyclerView.ViewHolder
