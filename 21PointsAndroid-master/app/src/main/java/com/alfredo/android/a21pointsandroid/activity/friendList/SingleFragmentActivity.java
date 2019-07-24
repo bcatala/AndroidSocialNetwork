@@ -15,6 +15,7 @@ import com.alfredo.android.a21pointsandroid.activity.AuxActivity;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity2;
 import com.alfredo.android.a21pointsandroid.activity.SearchUserActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
@@ -73,7 +74,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
             });
 
-            Button mfriendButton = (Button) findViewById(R.id.perfil__button);
+           Button mfriendButton = (Button) findViewById(R.id.corazon_buto);
             mfriendButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -87,7 +88,19 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
                 }
             });
 
-            Button mallusersButton = (Button) findViewById(R.id.HOME__button);
+        Button mPerfil = (Button) findViewById(R.id.perfil_butto);
+        mPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity2.class);
+
+                startActivity(i);
+            }
+        });
+
+            Button mallusersButton = (Button) findViewById(R.id.home_butto);
             mallusersButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

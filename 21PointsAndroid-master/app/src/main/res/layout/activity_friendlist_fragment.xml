@@ -51,7 +51,7 @@
 
 
         <Button
-            android:id="@+id/HOME__button"
+            android:id="@+id/home_butto"
             style="?android:textAppearanceSmall"
             android:layout_width="38dp"
             android:layout_height="36dp"
@@ -60,7 +60,7 @@
             android:background="@drawable/home2" />
 
         <Button
-            android:id="@+id/perfil__button"
+            android:id="@+id/corazon_buto"
             style="?android:textAppearanceSmall"
             android:layout_width="38dp"
             android:layout_height="36dp"
@@ -79,7 +79,7 @@
             android:textAlignment="viewStart" />
 
         <Button
-            android:id="@+id/corazon__button"
+            android:id="@+id/perfil_butto"
             style="?android:textAppearanceSmall"
             android:layout_width="38dp"
             android:layout_height="36dp"

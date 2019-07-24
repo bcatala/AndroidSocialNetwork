@@ -12,6 +12,7 @@ import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.InviteCallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.MyFriendsAPICallBack;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 import com.alfredo.android.a21pointsandroid.restapi.callback.RegisterAPICallback;
 import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
@@ -203,6 +204,28 @@ public class RestAPIManager {
             @Override
             public void onFailure(Call<UserProfile> call, Throwable t) {
                 userAPICallBack.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getCurrentUserProfile(final ProfileAPICallback profileAPICallback, String token) {
+
+        Call<UserProfile2> call = restApiService.getCurrentUserProfile("Bearer " + token);
+
+        call.enqueue(new Callback<UserProfile2>() {
+            @Override
+            public void onResponse(Call<UserProfile2> call, Response<UserProfile2> response) {
+                int a = 1;
+                if (response.isSuccessful()) {
+                    profileAPICallback.onGetCurrentProfile(response.body());
+                } else {
+                    profileAPICallback.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserProfile2> call, Throwable t) {
+                profileAPICallback.onFailure(t);
             }
         });
     }

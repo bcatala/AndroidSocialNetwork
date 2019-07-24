@@ -28,6 +28,7 @@ import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ import java.util.LinkedList;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack, MyFriendsAPICallBack {
+public class LoginActivity extends AppCompatActivity implements LoginAPICallBack, UserAPICallBack, MyFriendsAPICallBack,ProfileAPICallback {
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     private String password;
     private User user;
     public static String token;
+    public static UserProfile2 userProfile2;
 
     public static ArrayList<User> allUsers;
     public static ArrayList<UserProfile> myFriends;
@@ -247,14 +249,24 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetAllUserProfiles(ArrayList<UserProfile> body){
         AllProfiles=body;
 
-        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-        i.putExtra("token", this.token);
-        //i.putExtra("user", this.user.convertString());
 
-        startActivity(i);
+        RestAPIManager.getInstance().getCurrentUserProfile(this ,token);
 
 
     }
 
+    @Override
+    public void onGetCurrentProfile(UserProfile2 currentProfile) {
+
+        this.userProfile2 = currentProfile;
+
+        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        i.putExtra("token", this.token);
+
+
+
+        startActivity(i);
+
+    }
 }
 
