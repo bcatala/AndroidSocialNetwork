@@ -57,21 +57,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/verperfil__button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="368dp"
-        android:layout_height="20dp"
-        android:background="@color/White"
-        android:text="ver_perfil"
-        android:textColor="@color/colorPrimary" />
-
-
-    <Button
         android:id="@+id/GotoMenu"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:background="@color/colorAccent2"
         android:hint="Xat"
         android:text="Xat"
         android:textStyle="bold" />

@@ -76,19 +76,19 @@ public class FriendListFragment extends Fragment {
             super(inflater.inflate(R.layout.list_item_user, parent, false));
             itemView.setOnClickListener(this);
 
-            mUsernameTextView = (TextView) itemView.findViewById(R.id.friend_username);
-            mEmailTextView = (TextView) itemView.findViewById(R.id.friend_email);
-            maboutme = (TextView) itemView.findViewById(R.id.frase_abautme2);
-            mButton = (Button) itemView.findViewById(R.id.verperfil__button);
+            mUsernameTextView = (TextView) itemView.findViewById(R.id.friend_username2);
+            mEmailTextView = (TextView) itemView.findViewById(R.id.femail);
+            maboutme = (TextView) itemView.findViewById(R.id.frase_abautme3);
+            mButton = (Button) itemView.findViewById(R.id.XAT);
         }
 
         public void bind(Friend friend) {
             misFriend = friend;
-          //  mUsernameTextView.setText(friend.getUsername());
+            mUsernameTextView.setText(friend.getUsername());
 
             int a=0;
-         //   mEmailTextView.setText(friend.getEmail());
-          //  maboutme.setText(friend.getAboutme());
+            mEmailTextView.setText(friend.getEmail());
+            maboutme.setText(friend.getAboutme());
 
         }
         @Override
