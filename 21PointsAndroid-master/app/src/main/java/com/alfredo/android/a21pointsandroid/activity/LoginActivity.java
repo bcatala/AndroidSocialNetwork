@@ -167,7 +167,6 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
         this.token = userToken.getIdToken();
 
         RestAPIManager.getInstance().getAllUsers(this, token);
-        RestAPIManager.getInstance().getCurrentUserProfile(this,token);
 
 
     }
@@ -176,6 +175,13 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetCurrentProfile(UserProfile2 currentProfile) {
 
         this.userProfile2 = currentProfile;
+
+        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        i.putExtra("token", this.token);
+
+
+
+        startActivity(i);
 
     }
 
@@ -235,13 +241,9 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public void onGetFriends(ArrayList<UserProfile> myfriends){
 
         this.myFriends = myfriends;
-
-        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
-        i.putExtra("token", this.token);
-        i.putExtra("profile", this.userProfile2.convertString());
+        RestAPIManager.getInstance().getCurrentUserProfile(this,token);
 
 
-        startActivity(i);
     }
 
     @Override

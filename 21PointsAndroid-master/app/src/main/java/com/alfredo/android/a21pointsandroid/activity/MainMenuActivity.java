@@ -35,7 +35,6 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
 
     private String token;
     private User user;
-    private UserProfile2 userProfile2;
 
     private Button mFriendListButton;
     private Button mSearchUserButton;
@@ -45,6 +44,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private EditText mIdtoSearchProfile;
     private Button mSearchChatButton;
     private Button mSearchProfileButton;
+
 
 
     public static ArrayList<Invitation> receivedInvitations;
@@ -59,7 +59,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         setContentView(R.layout.activity_mainmenu);
 
         this.token = getIntent().getStringExtra("token");
-        this.userProfile2 = getUserProfileInfo(getIntent().getStringExtra("profile"));
+        LoginActivity.userProfile2.getAboutMe();
+
 
         RestAPIManager.getInstance().getUserAccount(this, token);
 
@@ -157,12 +158,6 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         //i.putExtra("user", this.user.convertString());
 
         startActivity(i);*/
-    }
-
-   private synchronized UserProfile2 getUserProfileInfo(String userProfile2) {
-        String[] elements = userProfile2.split("/");
-
-        return new UserProfile2(elements[0],elements[3],elements[4], elements[11], elements[12]);
     }
 
     @Override
