@@ -1,20 +1,12 @@
 package com.alfredo.android.a21pointsandroid.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
-import com.alfredo.android.a21pointsandroid.activity.friendList.DownloadImageTask;
-import com.alfredo.android.a21pointsandroid.model.User;
-import com.alfredo.android.a21pointsandroid.model.UserData;
 import com.alfredo.android.a21pointsandroid.model.UserProfile2;
-import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 
 public class ProfileActivity extends AppCompatActivity implements ProfileAPICallback {
@@ -40,8 +32,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileAPICall
         TextView tvIdProfile = findViewById(R.id.id_profile);
         tvIdProfile.setText(getProfile().getId().toString());
 
-        /*new DownloadImageTask((ImageView) findViewById(R.id.imageView))
-                .execute(getProfile().getPicture());*/
+
 
         /*mGotoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
