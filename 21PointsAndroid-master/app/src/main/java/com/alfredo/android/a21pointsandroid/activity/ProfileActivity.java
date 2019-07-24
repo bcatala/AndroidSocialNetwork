@@ -6,31 +6,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.friendList.DownloadImageTask;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserData;
+import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ProfileAPICallback;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements ProfileAPICallback {
     private Button GotoMenu;
-    private TextView username_id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Button mGotoMenu = (Button) findViewById(R.id.GotoMenu);
 
-        String email = getIntent().getStringExtra("email");
 
-        TextView textView4= findViewById(R.id.textView4);
-        textView4.setText(email);
+        TextView tvProfile = findViewById(R.id.profile_name);
+        tvProfile.setText(getProfile().getDisplayName());
 
-        //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
+        TextView tvAboutMe = findViewById(R.id.about_me);
+        tvAboutMe.setText(getProfile().getAboutMe());
 
+        TextView tvBirthDate = findViewById(R.id.birth_date);
+        tvBirthDate.setText(getProfile().getBirthDate());
+
+        TextView tvIdProfile = findViewById(R.id.id_profile);
+        tvIdProfile.setText(getProfile().getId().toString());
+
+        /*new DownloadImageTask((ImageView) findViewById(R.id.imageView))
+                .execute(getProfile().getPicture());*/
 
         /*mGotoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +53,20 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         });*/
+    }
+
+    @Override
+    public void onGetCurrentProfile(UserProfile2 currentProfile) {
+
+    }
+
+    public UserProfile2 getProfile(){
+        return LoginActivity.userProfile2;
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
     }
 }
 

@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
 
         this.userProfile2 = currentProfile;
 
-        Intent i = new Intent(LoginActivity.this, MainMenuActivity.class);
+        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
         i.putExtra("token", this.token);
 
 
