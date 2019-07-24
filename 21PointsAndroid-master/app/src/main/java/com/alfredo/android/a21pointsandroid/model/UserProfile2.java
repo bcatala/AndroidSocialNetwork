@@ -99,6 +99,7 @@ public class UserProfile2 implements Serializable {
         this.pictureContentType = pictureContentType;
     }
 
+
     public String getAboutMe() {
         return aboutMe;
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
@@ -27,25 +28,59 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
     private String login;
     private Button mInviteButton;
     private User user;
+    public static UserProfile2 userProfile2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchuser);
 
-        mSearchBar = (EditText) findViewById(R.id.user_to_search);
-
 
         mSearchButton = (Button) findViewById(R.id.search_button);
+
+
+
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLogin(mSearchBar.getText().toString());
-                //mInviteButton.setText("INVITE");
-                RestAPIManager.getInstance().searchUser(getContext(), LoginActivity.token, login);
+
+                mSearchBar = (EditText) findViewById(R.id.user_to_search);
+                String display_name = mSearchBar.getText().toString();
+                if ( userProfileFound( display_name ) == -1 ) {
+                    Toast.makeText(SearchUserActivity.this, "User not found!",Toast.LENGTH_LONG).show();
+                } else {
+
+                    Intent i = new Intent(SearchUserActivity.this, UserProfile2.class);
+                    startActivity(i);
+
+                }
+
+
+                //RestAPIManager.getInstance().searchUser(getContext(), LoginActivity.token, login);
                 //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
             }
         });
+    }
+
+    private int userProfileFound(String display_name){
+        int found = -1;
+        boolean ok = false;
+
+        for ( int i = 0; i < LoginActivity.AllProfiles.size() && !ok; i++ ){
+            if ( display_name.equals(LoginActivity.AllProfiles.get(i).getDisplayName()) ){
+                found = i;
+                ok = true;
+            }
+        }
+
+        if ( ok ) {
+
+            UserProfile2 user_aux = new UserProfile2(LoginActivity.AllProfiles.get(found).getAboutMe(), LoginActivity.AllProfiles.get(found).getBirthDate(),
+                    LoginActivity.AllProfiles.get(found).getDisplayName(),LoginActivity.AllProfiles.get(found).getPicture(),
+                    LoginActivity.AllProfiles.get(found).getPictureContentType());
+
+        }
+        return found;
     }
 
     private UserAPICallBack getContext() {
@@ -65,16 +100,16 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
 
          this.user = body;
 
-         mUserFound = (TextView) findViewById(R.id.userFound);
-         mUserFound.setText(body.getLogin());
+         //mUserFound = (TextView) findViewById(R.id.userFound);
+         //mUserFound.setText(body.getLogin());
 
-         mInviteButton = (Button) findViewById(R.id.invite_buton);
+        /* mInviteButton = (Button) findViewById(R.id.invite_buton);
          mInviteButton.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  RestAPIManager.getInstance().inviteUser(getInviteContext(), user.getId());
              }
-         });
+         });*/
 
     }
 
