@@ -1,6 +1,7 @@
 package com.alfredo.android.a21pointsandroid.activity.Chat;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
+import com.alfredo.android.a21pointsandroid.model.UserProfile;
 
 
 import java.util.ArrayList;
@@ -22,6 +25,9 @@ import java.util.List;
 public class MessageListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private MessageAdapter mAdapter;
+    public static UserProfile userProfile;
+    public static  List<Message> mMessages = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,9 +44,11 @@ public class MessageListFragment extends Fragment {
     }
 
     private void updateUI() {
+        mMessages =  new ArrayList<>();
         MessageLab messageLab = MessageLab.get(getActivity());
-        List<Message> mMessages = messageLab.getMessages();
-        mMessages = new ArrayList<>();
+        mMessages =  new ArrayList<>();
+         mMessages = messageLab.getMessages();
+
         List<Message> mes = new ArrayList<>();
         int j=0;
         int id=0;
@@ -51,7 +59,7 @@ public class MessageListFragment extends Fragment {
 
                 id=j;
 
-
+                userProfile=LoginActivity.AllProfiles.get(j);
 
 
             }

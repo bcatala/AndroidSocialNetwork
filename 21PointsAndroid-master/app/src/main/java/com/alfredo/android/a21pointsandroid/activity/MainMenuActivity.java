@@ -65,13 +65,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         mFriendListButton.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
-                Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("user", user);
-                i.putExtras(bundle);
-
-                startActivity(i);
+                RestAPIManager.getInstance().getDirectMessage(getContextChat());
             }
         });
 
@@ -132,6 +127,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         startActivity(i);
     }
 
+
+
     private InviteCallBack getContext() {
 
         return this;
@@ -183,6 +180,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     public void onGetChatrooms(ArrayList<Chatroom> body) {
         allChatrooms = body;
         startRandomChat();
+
     }
 
     @Override
@@ -219,12 +217,17 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     @Override
     public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
         dmessage = messages;
-        Intent i = new Intent(getContextClass(), DirectMessagesActivity.class);
+        Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        i.putExtras(bundle);
+
         startActivity(i);
     }
 
     @Override
-    public void onPostDirectMessage(ArrayList<Direct_Message> messages) {
+    public void onPostDirectMessage() {
 
     }
 

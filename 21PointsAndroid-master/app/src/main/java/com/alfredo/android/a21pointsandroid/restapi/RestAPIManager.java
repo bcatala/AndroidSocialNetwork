@@ -3,6 +3,7 @@ package com.alfredo.android.a21pointsandroid.restapi;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
@@ -355,22 +356,22 @@ public class RestAPIManager {
         });
     }
 
-    public synchronized void PostDirectMessage(Direct_Message direct_message,final ChatroomAPICallBack chatroomAPICallBack) {
-        Call<ArrayList<Direct_Message>> call =
-                restApiService.PostDirectMessage(direct_message,"Bearer " + LoginActivity.token);
+    public synchronized void PostDirectMessage(Direct_message2 direct_message, final ChatroomAPICallBack chatroomAPICallBack) {
+        Call<Direct_message2> call =
+                restApiService.PostDirectMessage("Bearer " + LoginActivity.token, direct_message);
 
-        call.enqueue(new Callback<ArrayList<Direct_Message>>() {
+        call.enqueue(new Callback<Direct_message2>() {
             @Override
-            public void onResponse(Call<ArrayList<Direct_Message>> call, Response<ArrayList<Direct_Message>> response) {
+            public void onResponse(Call<Direct_message2> call, Response<Direct_message2> response) {
                 if (response.isSuccessful()) {
-                    chatroomAPICallBack.onPostDirectMessage(response.body());
+                    chatroomAPICallBack.onPostDirectMessage();
                 } else {
                     chatroomAPICallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Direct_Message>> call, Throwable t) {
+            public void onFailure(Call<Direct_message2> call, Throwable t) {
                 chatroomAPICallBack.onFailure(t);
             }
         });

@@ -2,6 +2,7 @@ package com.alfredo.android.a21pointsandroid.restapi;
 
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.Points;
@@ -20,6 +21,7 @@ import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RestAPIService {
@@ -63,7 +65,7 @@ public interface RestAPIService {
     Call<ArrayList<Direct_Message>> getDirectMessage(@Header("Authorization") String token);
 
 
-    @POST("/api/direct-messages")
-    Call<ArrayList<Direct_Message>> PostDirectMessage(@Body Direct_Message dmesage, @Header("Authorization") String token);
+    @PUT("/api/direct-messages")
+    Call<Direct_message2> PostDirectMessage(@Header("Authorization") String token ,@Body Direct_message2 directMessage);
 
 }

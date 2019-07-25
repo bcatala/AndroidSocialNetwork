@@ -45,6 +45,10 @@ public class Direct_Message {
         mId = UUID.randomUUID();
     }
 
+    public void getDirect_Message() {
+        mId = UUID.randomUUID();
+    }
+
     public UUID getId2() {
         return mId;
     }
