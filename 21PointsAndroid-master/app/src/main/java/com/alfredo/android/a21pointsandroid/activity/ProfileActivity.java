@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendFragment;
 import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.User;
@@ -25,6 +26,8 @@ public class ProfileActivity extends AppCompatActivity implements UserAPICallBac
     private TextView UsernameField;
     private TextView mEmailField;
     private TextView mAboutme;
+    public static int change;
+    public static String nomUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity implements UserAPICallBac
 
         UsernameField = (TextView) findViewById(R.id.friend_username);
         UsernameField.setText(SingleFragmentActivity.myFriend.getUsername());
+        nomUser=SingleFragmentActivity.myFriend.getUsername();
 
         mEmailField = (TextView) findViewById(R.id.friend_email);
         mEmailField.setText(SingleFragmentActivity.myFriend.getEmail());
@@ -47,16 +51,17 @@ public class ProfileActivity extends AppCompatActivity implements UserAPICallBac
         //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
 
 
-        /*mGotoMenu.setOnClickListener(new View.OnClickListener() {
+        mGotoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProfileActivity.this, MainActivity.class);
-                i.putExtra("username",getIntent().getStringExtra("email"));
-                i.putExtra("user", getIntent().getStringExtra("user"));
+
+                change=1;
+                Intent i = new Intent(ProfileActivity.this, MessageListActivity.class);
+
                 startActivity(i);
             }
 
-        });*/
+        });
     }
 
     @Override

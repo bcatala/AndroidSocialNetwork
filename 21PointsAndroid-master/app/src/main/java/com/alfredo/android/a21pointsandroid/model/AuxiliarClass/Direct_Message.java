@@ -4,8 +4,12 @@ import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
 public class Direct_Message {
 
+
+    private UUID mId;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -34,19 +38,18 @@ public class Direct_Message {
     /**
      * No args constructor for use in serialization
      */
+
+
+
     public Direct_Message() {
+        mId = UUID.randomUUID();
     }
 
-    /**
-     * @param sender
-     * @param picture
-     * @param message
-     * @param id
-     * @param pictureContentType
-     * @param createdDate
-     * @param recipient
-     * @param url
-     */
+    public UUID getId2() {
+        return mId;
+    }
+
+
     public Direct_Message(Integer id, String createdDate, String message, String url, String picture, Object pictureContentType, UserProfile sender, UserProfile recipient) {
         super();
         this.id = id;

@@ -11,8 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
-import com.alfredo.android.a21pointsandroid.activity.chatroom.Message;
+import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageListFragment extends Fragment {
@@ -35,9 +39,70 @@ public class MessageListFragment extends Fragment {
 
     private void updateUI() {
         MessageLab messageLab = MessageLab.get(getActivity());
-        List<Message> messages = messageLab.getMessages();
+        List<Message> mMessages = messageLab.getMessages();
+        mMessages = new ArrayList<>();
+        List<Message> mes = new ArrayList<>();
+        int j=0;
+        int id=0;
+        while (j<LoginActivity.AllProfiles.size()){
 
-        mAdapter = new MessageAdapter(messages);
+
+            if(LoginActivity.AllProfiles.get(j).getUser().getLogin().equals(SingleFragmentActivity.myFriend.getUsername())) {
+
+                id=j;
+
+
+
+
+            }
+            j++;
+        }
+        if(MainMenuActivity.dmessage.size()!=0 || id!=0) {
+
+            for (int i = 0; i < MainMenuActivity.dmessage.size(); i++) {
+                Message m = new Message();
+
+                if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
+
+                    m.setMissatge(LoginActivity.AllProfiles.get(id).getUser().getLogin()+": "+MainMenuActivity.dmessage.get(i).getMessage());
+                    mes.add(m);
+                    mMessages.add(m);
+                }
+                if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
+
+                    m.setMissatge("\t\t\tTu"+": "+MainMenuActivity.dmessage.get(i).getMessage());
+                    mes.add(m);
+                    mMessages.add(m);
+                }
+
+
+            }
+            if(mMessages.size()!=0){
+
+
+
+            }else{
+
+                Message m2 = new Message();
+
+                m2.setMissatge("No te missatges2");
+                mMessages.add(m2);
+            }
+
+        }else{
+
+            Message m = new Message();
+
+            m.setMissatge("No te missatges");
+            mMessages.add(m);
+
+        }
+
+
+        mAdapter = new MessageAdapter(mMessages);
         mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
@@ -57,13 +122,13 @@ public class MessageListFragment extends Fragment {
 
         public void bind(Message message) {
             mMessage = message;
-            mMessageView.setText(mMessage.getMessage());
+            mMessageView.setText(mMessage.getMissatge());
         }
 
         @Override
         public void onClick(View view) {
             Toast.makeText(getActivity(),
-                    mMessage.getMessage() + " clicked!", Toast.LENGTH_SHORT)
+                    mMessage.getMissatge() + " clicked!", Toast.LENGTH_SHORT)
                     .show();
         }
     }

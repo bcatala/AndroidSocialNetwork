@@ -35,6 +35,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     private String token;
     public static User user;
 
+
     private Button mFriendListButton;
     private Button mSearchUserButton;
     private Button mInvitationButton;
@@ -220,6 +221,11 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         dmessage = messages;
         Intent i = new Intent(getContextClass(), DirectMessagesActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onPostDirectMessage(ArrayList<Direct_Message> messages) {
+
     }
 
     public MainMenuActivity getContextClass(){

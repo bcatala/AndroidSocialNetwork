@@ -354,4 +354,25 @@ public class RestAPIManager {
             }
         });
     }
+
+    public synchronized void PostDirectMessage(Direct_Message direct_message,final ChatroomAPICallBack chatroomAPICallBack) {
+        Call<ArrayList<Direct_Message>> call =
+                restApiService.PostDirectMessage(direct_message,"Bearer " + LoginActivity.token);
+
+        call.enqueue(new Callback<ArrayList<Direct_Message>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Direct_Message>> call, Response<ArrayList<Direct_Message>> response) {
+                if (response.isSuccessful()) {
+                    chatroomAPICallBack.onPostDirectMessage(response.body());
+                } else {
+                    chatroomAPICallBack.onFailure((new Throwable("ERROR " + response.code() + ", " + response.raw().message())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Direct_Message>> call, Throwable t) {
+                chatroomAPICallBack.onFailure(t);
+            }
+        });
+    }
 }

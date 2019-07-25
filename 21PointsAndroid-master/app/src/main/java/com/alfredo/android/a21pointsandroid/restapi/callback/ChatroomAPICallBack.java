@@ -10,4 +10,5 @@ public interface ChatroomAPICallBack {
     void onGetMessages(Chatroom body);
     void onFailure(Throwable t);
     void onGetDirectMessage(ArrayList<Direct_Message> messages);
+    void onPostDirectMessage(ArrayList<Direct_Message> messages);
 }

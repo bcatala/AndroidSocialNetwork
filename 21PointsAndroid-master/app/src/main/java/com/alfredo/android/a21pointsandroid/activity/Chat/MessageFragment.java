@@ -2,23 +2,21 @@ package com.alfredo.android.a21pointsandroid.activity.Chat;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
-
-import static android.widget.CompoundButton.OnCheckedChangeListener;
+import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 
 public class MessageFragment extends Fragment {
 
-    private Crime mCrime;
+    private Message mCrime;
+    private TextView mUsernameField;
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckbox;
@@ -26,13 +24,19 @@ public class MessageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCrime = new Crime();
+        mCrime = new Message();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_chatroom, container, false);
+
+
+
+        mUsernameField = (TextView) v.findViewById(R.id.message_chat);
+        mUsernameField.setText(MainMenuActivity.dmessage.get(0).getMessage());
+
 
         /*mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.addTextChangedListener(new TextWatcher() {

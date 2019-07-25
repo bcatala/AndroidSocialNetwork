@@ -62,4 +62,8 @@ public interface RestAPIService {
     @GET("/api/direct-messages")
     Call<ArrayList<Direct_Message>> getDirectMessage(@Header("Authorization") String token);
 
+
+    @POST("/api/direct-messages")
+    Call<ArrayList<Direct_Message>> PostDirectMessage(@Body Direct_Message dmesage, @Header("Authorization") String token);
+
 }

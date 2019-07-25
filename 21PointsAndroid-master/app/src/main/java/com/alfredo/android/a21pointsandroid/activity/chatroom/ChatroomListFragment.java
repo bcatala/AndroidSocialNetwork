@@ -108,6 +108,11 @@ public class ChatroomListFragment extends Fragment {
 
         }
 
+        @Override
+        public void onPostDirectMessage(ArrayList<Direct_Message> messages) {
+
+        }
+
 
     }
 

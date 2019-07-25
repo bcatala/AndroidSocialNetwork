@@ -33,6 +33,7 @@ public class ProfileActivity2 extends AppCompatActivity implements UserAPICallBa
 
        // String email = getIntent().getStringExtra("email");
 
+
         UsernameField = (TextView) findViewById(R.id.friend_username);
         UsernameField.setText(LoginActivity.userProfile2.getDisplayName());
 

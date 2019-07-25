@@ -19,6 +19,7 @@ public class DirectMessagesActivity extends AppCompatActivity {
     private int i;
     private int j;
 
+
     private ArrayList<Direct_Message> dms;
     private ArrayList<UserMessage> dataStructure;
 
