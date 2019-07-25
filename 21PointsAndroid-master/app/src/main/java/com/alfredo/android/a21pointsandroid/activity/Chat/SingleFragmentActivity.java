@@ -61,7 +61,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
                  );*/
 
-                Direct_message2 dm2 = new Direct_message2("agapito contestam",LoginActivity.AllProfiles.get(17),LoginActivity.userProfile2,500);
+                Direct_message2 dm2 = new Direct_message2(PostMissatge.getText().toString(),MessageListFragment.userProfile,LoginActivity.userProfile2,500);
 
 
 
@@ -108,6 +108,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
 
         MainMenuActivity.dmessage=messages;
+
+
 
 
     }

@@ -26,7 +26,7 @@ public class MessageListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private MessageAdapter mAdapter;
     public static UserProfile userProfile;
-    public static  List<Message> mMessages = new ArrayList<>();
+    public static List<Message> mMessages;
 
 
     @Override
@@ -44,11 +44,11 @@ public class MessageListFragment extends Fragment {
     }
 
     private void updateUI() {
-        mMessages =  new ArrayList<>();
+
         MessageLab messageLab = MessageLab.get(getActivity());
         mMessages =  new ArrayList<>();
-         mMessages = messageLab.getMessages();
-
+         //mMessages = messageLab.getMessages();
+        mMessages =  new ArrayList<>();
         List<Message> mes = new ArrayList<>();
         int j=0;
         int id=0;
@@ -71,12 +71,15 @@ public class MessageListFragment extends Fragment {
                 Message m = new Message();
 
                 if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
-                        MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
+                        MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin())) {
 
                     m.setMissatge(LoginActivity.AllProfiles.get(id).getUser().getLogin()+": "+MainMenuActivity.dmessage.get(i).getMessage());
                     mes.add(m);
                     mMessages.add(m);
                 }
+
+
                 if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
