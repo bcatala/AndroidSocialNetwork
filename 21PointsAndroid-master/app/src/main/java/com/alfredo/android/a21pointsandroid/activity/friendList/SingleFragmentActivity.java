@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.AuxActivity;
@@ -17,6 +18,7 @@ import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity2;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity3;
 import com.alfredo.android.a21pointsandroid.activity.SearchUserActivity;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListActivity;
@@ -40,6 +42,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     static SingleFragmentActivity a2;
     public static ArrayList<Chatroom> allChatrooms;
     public static Chatroom chat;
+    public static UserProfile search_profile;
 
     protected abstract Fragment createFragment();
     public  void proba(){
@@ -68,17 +71,30 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
             messages.setOnClickListener(new View.OnClickListener() {
                 @Override
 
-                public void onClick(View v) {
-                    setLogin(Profile_to_search.getText().toString());
-                    LoginActivity.profil = 0;
-                    Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity.class);
-                    i.putExtra("login", login);
-                    LoginActivity.profil2 = 0;
-                    startActivity(i);
-                    //mInviteButton.setText("INVITE");
-                    // RestAPIManager.getInstance().searchUser(getContex(), LoginActivity.token, Profile_to_search.getText().toString());
-                    //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
-                }
+
+                    public void onClick(View v) {
+
+                        setLogin(Profile_to_search.getText().toString());
+                        Profile_to_search = (EditText) findViewById(R.id.Profile_to_search);
+                        LoginActivity.profil = 0;
+                        String display_name = Profile_to_search.getText().toString();
+
+                        if ( userProfileFound( display_name ) == -1 ) {
+                            Toast.makeText(SingleFragmentActivity.this, "User not found!",Toast.LENGTH_LONG).show();
+                        } else {
+
+
+                            Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity3.class);
+
+                            startActivity(i);
+
+                        }
+
+                        //mInviteButton.setText("INVITE");
+                        // RestAPIManager.getInstance().searchUser(getContex(), LoginActivity.token, Profile_to_search.getText().toString());
+                        //RestAPIManager.getInstance().searchAllUserProfiles(getContext(), LoginActivity.token);
+                    }
+
 
             });
 
@@ -209,6 +225,25 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public void onUserProfileFound(UserProfile body) {
 
     }
+
+    private int userProfileFound(String display_name){
+        int found = -1;
+        boolean ok = false;
+
+        for ( int i = 0; i < LoginActivity.AllProfiles.size() && !ok; i++ ){
+            if ( display_name.equals(LoginActivity.AllProfiles.get(i).getDisplayName()) ){
+                found = i;
+                ok = true;
+            }
+        }
+
+        if ( ok ) {
+
+            this.search_profile = LoginActivity.AllProfiles.get(found);
+        }
+        return found;
+    }
+
 
     @Override
     public void onGetAllUserProfiles(ArrayList<UserProfile> body) {

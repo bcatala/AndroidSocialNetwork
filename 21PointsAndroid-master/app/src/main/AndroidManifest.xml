@@ -20,7 +20,11 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.LoginActivity"
+        android:label="Linkedls"></activity>
+        <activity
+            android:name=".activity.ProfileActivity3"
             android:label="Linkedls"></activity>
+
         <activity
             android:name=".activity.ProfileActivity2"
             android:label="Linkedls"></activity>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/White"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/friend_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent2"
+        android:text="Username"
+        android:textSize="20dp"/>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/White"
+        android:padding="8dp">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="77dp"
+            android:layout_height="122dp"
+            android:background="@drawable/socialnetwork" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/White"
+            android:padding="8dp">
+            <TextView
+                android:id="@+id/friend_email"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="email" />
+
+            <TextView
+                android:id="@+id/frase_abautme2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="frase-about-me"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/birth_date"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="BirthDate"
+                android:textSize="25dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/AddFriend"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorAccent2"
+        android:text="Add Friend"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
