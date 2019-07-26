@@ -79,7 +79,7 @@ public class MessageListFragment extends Fragment {
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getReciver().getUser().getLogin())) {
 
-                    m.setMissatge(LoginActivity.AllProfiles.get(id).getUser().getLogin()+": "+MainMenuActivity.dmessage.get(i).getMessage());
+                    m.setMissatge(" TU: "+MainMenuActivity.dmessage.get(i).getMessage());
                     mes.add(m);
                     mMessages.add(m);
                 }
@@ -89,7 +89,7 @@ public class MessageListFragment extends Fragment {
                         MainMenuActivity.dmessage.get(i).getReciver().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
 
-                    m.setMissatge("\t\t\tTu"+": "+MainMenuActivity.dmessage.get(i).getMessage());
+                    m.setMissatge("\t\t\t"+LoginActivity.AllProfiles.get(id).getUser().getLogin()+"+: "+MainMenuActivity.dmessage.get(i).getMessage());
                     mes.add(m);
                     mMessages.add(m);
                 }
