@@ -67,7 +67,8 @@ public class ProfileActivity extends AppCompatActivity implements UserAPICallBac
                 ProfileActivity4.idrecipient=LoginActivity.userProfile2.getId().toString();
                 ProfileActivity4.idsender=a.toString();
 cop=1;
-                        RestAPIManager.getInstance().getDirectMessage(getContext());
+                        RestAPIManager.getInstance().getDirectMessage(getContext()
+                                ,ProfileActivity4.idrecipient,ProfileActivity4.idsender);
 
             }
 
@@ -138,7 +139,7 @@ public ChatroomAPICallBack getContext(){
             ProfileActivity4.idsender=LoginActivity.userProfile2.getId().toString();
             ProfileActivity4.idrecipient=a.toString();
             cop=0;
-            RestAPIManager.getInstance().getDirectMessage(getContext());
+            RestAPIManager.getInstance().getDirectMessage(getContext(),ProfileActivity4.idrecipient,ProfileActivity4.idsender);
 
         }else {
             while (k<messages.size()){

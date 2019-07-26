@@ -147,7 +147,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
         ProfileActivity4.idsender=a.toString();
         ProfileActivity4.idrecipient=LoginActivity.userProfile2.getId().toString();
-        RestAPIManager.getInstance().getDirectMessage(this);
+        RestAPIManager.getInstance().getDirectMessage(this,ProfileActivity4.idrecipient,ProfileActivity4.idsender);
 
 
     }

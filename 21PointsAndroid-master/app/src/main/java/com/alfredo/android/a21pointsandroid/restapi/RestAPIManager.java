@@ -362,12 +362,12 @@ public class RestAPIManager {
         });
     }
 
-    public synchronized void getDirectMessage(final ChatroomAPICallBack chatroomAPICallBack) {
+    public synchronized void getDirectMessage(final ChatroomAPICallBack chatroomAPICallBack,String a,String b) {
 
 
         Map<String, String> data = new HashMap<>();
-        data.put("recipientId.equals", ProfileActivity4.idrecipient);
-        data.put("senderId.equals",ProfileActivity4.idsender);
+        data.put("recipientId.equals", a);
+        data.put("senderId.equals",b);
         data.put("sort","desc");
 
 
