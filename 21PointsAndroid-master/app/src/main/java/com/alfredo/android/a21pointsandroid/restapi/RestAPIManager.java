@@ -296,6 +296,30 @@ public class RestAPIManager {
         });
     }
 
+    public synchronized void changeInvitation(int id, boolean state, final InviteCallBack inviteCallBack) {
+
+        Call<Invitation> call = restApiService.changeInvitation(id, state, "Bearer " + userToken.getIdToken());
+        System.out.println(call.request());
+
+        call.enqueue(new Callback<Invitation>() {
+            @Override
+            public void onResponse(Call<Invitation> call, Response<Invitation> response) {
+                System.out.println(response.body());
+                if (response.isSuccessful()) {
+                    inviteCallBack.onChangeStateInvite();
+                }
+                else {
+                    inviteCallBack.onFailure(new Throwable("ERROR " + response.code() + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Invitation> call, Throwable t) {
+                inviteCallBack.onFailure(t);
+            }
+        });
+    }
+
     public synchronized void getChatrooms(final ChatroomAPICallBack chatroomAPICallBack) {
         Call<ArrayList<Chatroom>> call = restApiService.getChatrooms( "Bearer " + LoginActivity.token);
 

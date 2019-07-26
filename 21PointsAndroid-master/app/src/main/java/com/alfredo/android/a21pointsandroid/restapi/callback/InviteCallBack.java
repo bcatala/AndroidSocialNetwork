@@ -8,4 +8,5 @@ public interface InviteCallBack {
     void onGetInvitation(Invitation body);
     void onReciveInvitations(ArrayList<Invitation> body);
     void onFailure(Throwable t);
+    void onChangeStateInvite();
 }

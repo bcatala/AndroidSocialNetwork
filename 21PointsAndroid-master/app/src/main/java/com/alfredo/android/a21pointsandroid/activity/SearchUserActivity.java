@@ -83,6 +83,11 @@ public class SearchUserActivity extends AppCompatActivity implements UserAPICall
     }
 
     @Override
+    public void onChangeStateInvite() {
+
+    }
+
+    @Override
     public void onGetUserInfo(User body){
 
     }

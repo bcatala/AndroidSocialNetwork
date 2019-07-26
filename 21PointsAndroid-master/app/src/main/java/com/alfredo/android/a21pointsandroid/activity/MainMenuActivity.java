@@ -216,6 +216,11 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     }
 
     @Override
+    public void onChangeStateInvite() {
+
+    }
+
+    @Override
     public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
         dmessage = messages;
 

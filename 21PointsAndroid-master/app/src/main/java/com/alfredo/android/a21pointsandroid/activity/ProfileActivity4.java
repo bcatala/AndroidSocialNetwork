@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public class ProfileActivity3 extends AppCompatActivity implements UserAPICallBack, ProfileAPICallback, InviteCallBack {
+public class ProfileActivity4 extends AppCompatActivity implements UserAPICallBack, ProfileAPICallback, InviteCallBack {
     private Button GotoMenu;
     private TextView username_id;
     private TextView UsernameField;
@@ -33,55 +34,59 @@ public class ProfileActivity3 extends AppCompatActivity implements UserAPICallBa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile2);
+        setContentView(R.layout.activity_profile4);
 
         // String email = getIntent().getStringExtra("email");
 
 
-        UsernameField = (TextView) findViewById(R.id.friend_username);
+        UsernameField = (TextView) findViewById(R.id.friend_username55);
 
-        if ( SingleFragmentActivity.search_profile.getDisplayName() == null ){
+        if ( SingleFragmentActivity.myFriend.getUsername()== null ){
             UsernameField.setText("No information!");
         } else {
-            UsernameField.setText(SingleFragmentActivity.search_profile.getDisplayName());
+            UsernameField.setText(SingleFragmentActivity.myFriend.getUsername());
         }
 
-        mEmailField = (TextView) findViewById(R.id.friend_email);
+        mEmailField = (TextView) findViewById(R.id.friend_email22);
 
-        if ( SingleFragmentActivity.search_profile.getUser().getEmail() == null ){
+        if ( SingleFragmentActivity.myFriend.getEmail() == null ){
             mEmailField.setText("No information");
         } else {
-            mEmailField.setText(SingleFragmentActivity.search_profile.getUser().getEmail());
+            mEmailField.setText(SingleFragmentActivity.myFriend.getAboutme());
         }
 
-        mAboutme = (TextView) findViewById(R.id.frase_abautme2);
-        if ( SingleFragmentActivity.search_profile.getAboutMe() == null ){
+        mAboutme = (TextView) findViewById(R.id.frase_abautme32);
+        if ( SingleFragmentActivity.myFriend.getAboutme() == null ){
             mAboutme.setText("No information");
         } else {
-            mAboutme.setText(SingleFragmentActivity.search_profile.getAboutMe().toString());
+            mAboutme.setText(SingleFragmentActivity.myFriend.getAboutme());
         }
 
-        mBirthDate = (TextView) findViewById(R.id.birth_date);
-        if ( SingleFragmentActivity.search_profile.getBirthDate() == null ){
+        mBirthDate = (TextView) findViewById(R.id.birth_date22);
+
             mBirthDate.setText("No information");
-        } else {
-            mBirthDate.setText(SingleFragmentActivity.search_profile.getBirthDate().toString());
-        }
+
 
 
 
         //RestAPIManager.getInstance().getUserToken(getIntent().getExtras().getString(a), getIntent().getExtras().getString(b), R.layout.activity_login);
+        final CheckBox acceptFriend = findViewById(R.id.checkBox2);
 
-        Button AddFriend = (Button) findViewById(R.id.AddFriend);
-        AddFriend.setOnClickListener(new View.OnClickListener() {
+
+        Button AddFriend2 = (Button) findViewById(R.id.AddFriend23);
+        AddFriend2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RestAPIManager.getInstance().inviteUser(getInviteContext(), SingleFragmentActivity.search_profile.getUser().getId());
-                Toast.makeText(ProfileActivity3.this, "Invitation sended!",Toast.LENGTH_LONG).show();
+                //RestAPIManager.getInstance().changeInvitation(2,acceptFriend.isChecked(),getContext());
+                Toast.makeText(ProfileActivity4.this, "Invitation sended!",Toast.LENGTH_LONG).show();
 
             }
         });
+    }
+
+    public ProfileActivity4 getContext(){
+        return this;
     }
 
     private InviteCallBack getInviteContext(){

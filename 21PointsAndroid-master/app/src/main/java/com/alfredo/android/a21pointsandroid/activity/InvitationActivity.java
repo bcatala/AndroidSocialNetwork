@@ -84,4 +84,9 @@ public class InvitationActivity extends AppCompatActivity implements InviteCallB
     public void onFailure(Throwable t) {
 
     }
+
+    @Override
+    public void onChangeStateInvite() {
+
+    }
 }

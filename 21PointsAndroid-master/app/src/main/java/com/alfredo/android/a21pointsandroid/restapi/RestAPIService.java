@@ -64,6 +64,8 @@ public interface RestAPIService {
     @GET("/api/direct-messages")
     Call<ArrayList<Direct_message2>> getDirectMessage(@Header("Authorization") String token);
 
+    @PUT("/api/invite/{id}/state/{state}")
+    Call<Invitation> changeInvitation(@Path("id")int id, @Path("state")boolean state, @Header("Authorization") String token);
 
     @PUT("/api/direct-messages")
     Call<Direct_message2> PostDirectMessage(@Header("Authorization") String token ,@Body Direct_message2 directMessage);

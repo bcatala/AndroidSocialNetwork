@@ -29,6 +29,9 @@
             android:name=".activity.ProfileActivity2"
             android:label="Linkedls"></activity>
         <activity
+            android:name=".activity.ProfileActivity4"
+            android:label="Linkedls"></activity>
+        <activity
             android:name=".activity.AuxActivity"
             android:label="Linkedls"></activity>
 

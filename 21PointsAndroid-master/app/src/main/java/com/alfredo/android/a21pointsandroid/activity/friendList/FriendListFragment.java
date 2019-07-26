@@ -18,6 +18,7 @@ import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity4;
 import com.alfredo.android.a21pointsandroid.activity.SearchChatActivity;
 import com.alfredo.android.a21pointsandroid.activity.SearchUserActivity;
 
@@ -109,9 +110,14 @@ public class FriendListFragment extends Fragment {
             SingleFragmentActivity.surt=1;
             SingleFragmentActivity.myFriend=misFriend;
 
-            Intent i = new Intent(SingleFragmentActivity.a2, ProfileActivity.class);
-            startActivity(i);
-            //aqui pica un user
+            if ( LoginActivity.profil != 3) {
+                Intent i = new Intent(SingleFragmentActivity.a2, ProfileActivity.class);
+                startActivity(i);
+                //aqui pica un user
+            } else {
+                Intent i = new Intent(SingleFragmentActivity.a2, ProfileActivity4.class);
+                startActivity(i);
+            }
 
 
 
