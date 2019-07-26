@@ -302,7 +302,7 @@ public class RestAPIManager {
           call.enqueue(new Callback<Invitation>() {
             @Override
             public void onResponse(Call<Invitation> call, Response<Invitation> response) {
-                
+
                 if (response.isSuccessful()) {
                     inviteCallBack.onChangeStateInvite();
                 }

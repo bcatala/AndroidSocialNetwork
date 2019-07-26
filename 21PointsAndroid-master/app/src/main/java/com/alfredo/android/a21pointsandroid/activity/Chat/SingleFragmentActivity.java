@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
@@ -125,6 +126,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     @Override
     public void onPostDirectMessage() {
 
+        Toast.makeText(SingleFragmentActivity.this, "Message sended!",Toast.LENGTH_LONG).show();
         RestAPIManager.getInstance().getDirectMessage(this);
 
 
