@@ -120,12 +120,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
         int i=0;
 
-        while(i<messages.size()) {
 
-            MainMenuActivity.dmessage.add(messages.get(i));
-            i++;
 
-        }
+            MainMenuActivity.dmessage.add(messages.get(messages.size()-1));
+
+
+
 
        Intent i2 = new Intent(SingleFragmentActivity.this, MessageListActivity.class);
 
