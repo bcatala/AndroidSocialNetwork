@@ -12,10 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.AuxActivity;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity4;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListFragment;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
@@ -114,9 +118,20 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     @Override
     public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
 
-        MainMenuActivity.dmessage=messages;
+        int i=0;
+
+        while(i<messages.size()) {
+
+            MainMenuActivity.dmessage.add(messages.get(i));
+            i++;
+
+        }
+
+       Intent i2 = new Intent(SingleFragmentActivity.this, MessageListActivity.class);
 
 
+
+        startActivity(i2);
 
 
 
@@ -127,6 +142,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public void onPostDirectMessage() {
 
         Toast.makeText(SingleFragmentActivity.this, "Message sended!",Toast.LENGTH_LONG).show();
+
+        Integer a = FriendListFragment.id;
+
+        ProfileActivity4.idsender=a.toString();
+        ProfileActivity4.idrecipient=LoginActivity.userProfile2.getId().toString();
         RestAPIManager.getInstance().getDirectMessage(this);
 
 

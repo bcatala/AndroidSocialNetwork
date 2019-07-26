@@ -13,6 +13,7 @@ import com.alfredo.android.a21pointsandroid.model.UserProfile2;
 import com.alfredo.android.a21pointsandroid.model.UserToken;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,6 +24,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface RestAPIService {
 
@@ -62,7 +64,7 @@ public interface RestAPIService {
     Call<Chatroom> getMessages(@Path("id") Integer id, @Header("Authorization") String token);
 
     @GET("/api/direct-messages")
-    Call<ArrayList<Direct_message2>> getDirectMessage(@Header("Authorization") String token);
+    Call<ArrayList<Direct_message2>> getDirectMessage(@Header("Authorization") String token,@QueryMap Map<String, String> options);
 
     @PUT("/api/invite/{id}/state/{state}")
     Call<Invitation> changeInvitation(@Path("id")int id, @Path("state")boolean state, @Header("Authorization") String token);

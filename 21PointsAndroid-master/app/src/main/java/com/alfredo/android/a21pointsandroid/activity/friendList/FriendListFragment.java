@@ -27,7 +27,7 @@ import java.util.List;
 public class FriendListFragment extends Fragment {
     private RecyclerView mFriendRecyclerView;
     private FriendAdapter mAdapter;
-
+public static int id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,6 +109,21 @@ public class FriendListFragment extends Fragment {
             //mButton = (Button) view.findViewById(R.id.go_profile_user);
             SingleFragmentActivity.surt=1;
             SingleFragmentActivity.myFriend=misFriend;
+
+            for(int k=0;k<LoginActivity.AllProfiles.size();k++){
+
+                if(LoginActivity.AllProfiles.get(k).getUser().getLogin().equals(
+                        SingleFragmentActivity.myFriend.getUsername())){
+
+
+                    id=LoginActivity.AllProfiles.get(k).getId();
+
+                }
+
+
+            }
+
+
 
             if ( LoginActivity.profil != 3) {
                 Intent i = new Intent(SingleFragmentActivity.a2, ProfileActivity.class);

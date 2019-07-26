@@ -12,6 +12,7 @@ import java.util.UUID;
 public class FriendLab3 {
     public static FriendLab3 sFriendLab;
     public static int id_accepted;
+    public static int id;
 
     public static List<Friend> mFriends;
 

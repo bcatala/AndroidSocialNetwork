@@ -1,7 +1,9 @@
 package com.alfredo.android.a21pointsandroid.restapi;
 
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity4;
 import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.PageConfiguration;
@@ -22,6 +24,8 @@ import com.alfredo.android.a21pointsandroid.restapi.callback.PointsAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -359,7 +363,15 @@ public class RestAPIManager {
     }
 
     public synchronized void getDirectMessage(final ChatroomAPICallBack chatroomAPICallBack) {
-        Call<ArrayList<Direct_message2>> call = restApiService.getDirectMessage("Bearer " + LoginActivity.token);
+
+
+        Map<String, String> data = new HashMap<>();
+        data.put("recipientId.equals", ProfileActivity4.idrecipient);
+        data.put("senderId.equals",ProfileActivity4.idsender);
+        data.put("sort","desc");
+
+
+        Call<ArrayList<Direct_message2>> call = restApiService.getDirectMessage("Bearer " + LoginActivity.token,data);
 
         call.enqueue(new Callback<ArrayList<Direct_message2>>() {
             @Override

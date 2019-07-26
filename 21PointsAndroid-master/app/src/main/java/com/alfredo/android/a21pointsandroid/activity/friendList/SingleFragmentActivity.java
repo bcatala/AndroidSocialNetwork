@@ -44,6 +44,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public static Chatroom chat;
     public static UserProfile search_profile;
 
+
     protected abstract Fragment createFragment();
     public  void proba(){
 
@@ -279,6 +280,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
     @Override
     public void onPostDirectMessage() {
+
+
 
     }
 

@@ -58,6 +58,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
+
+
         this.token = getIntent().getStringExtra("token");
 
         RestAPIManager.getInstance().getUserAccount(this, token);
@@ -67,7 +69,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             @Override
            public void onClick(View v) {
 
-                RestAPIManager.getInstance().getDirectMessage(getContextChat());
+
+                RestAPIManager.getInstance().getAllInvitations(getContext());
             }
         });
 
@@ -110,7 +113,8 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
             public void onClick(View v) {
                 //mIdtoSearchChat.getText();
                 //RestAPIManager.getInstance().getMessages(getContextChat(), Integer.parseInt(mIdtoSearchChat.getText().toString()));
-                RestAPIManager.getInstance().getDirectMessage(getContextChat());
+               // RestAPIManager.getInstance().getDirectMessage(getContextChat());
+                RestAPIManager.getInstance().getAllInvitations(getContext());
             }
         });
 

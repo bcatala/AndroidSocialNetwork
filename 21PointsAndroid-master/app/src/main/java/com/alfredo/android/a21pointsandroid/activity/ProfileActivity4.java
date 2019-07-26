@@ -30,6 +30,8 @@ public class ProfileActivity4 extends AppCompatActivity implements UserAPICallBa
     private TextView mEmailField;
     private TextView mBirthDate;
     private TextView mAboutme;
+    public static String idrecipient;
+    public static String idsender;
 
 
     @Override
