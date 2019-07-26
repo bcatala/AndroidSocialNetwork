@@ -53,11 +53,22 @@ public class FriendListFragment extends Fragment {
              mAdapter = new FriendAdapter(friends);
              mFriendRecyclerView.setAdapter(mAdapter);
          }else{
-             FriendLabAll friendLab = FriendLabAll.get(getActivity());
-             List<Friend> friends = friendLab.getFriends();
+             if(LoginActivity.profil==0) {
+                 FriendLabAll friendLab = FriendLabAll.get(getActivity());
+                 List<Friend> friends = friendLab.getFriends();
 
-             mAdapter = new FriendAdapter(friends);
-             mFriendRecyclerView.setAdapter(mAdapter);
+                 mAdapter = new FriendAdapter(friends);
+                 mFriendRecyclerView.setAdapter(mAdapter);
+
+             }else{
+
+                 FriendLab3 friendLab = FriendLab3.get(getActivity());
+                 List<Friend> friends = friendLab.getFriends();
+
+                 mAdapter = new FriendAdapter(friends);
+                 mFriendRecyclerView.setAdapter(mAdapter);
+
+             }
 
          }
     }

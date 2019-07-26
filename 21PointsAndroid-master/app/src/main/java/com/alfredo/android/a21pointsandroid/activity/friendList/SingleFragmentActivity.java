@@ -98,6 +98,21 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
             });
 
+
+        Button invit_button = (Button) findViewById(R.id.invit_button);
+        invit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LoginActivity.profil = 3;
+                Intent i = new Intent(SingleFragmentActivity.this, AuxActivity.class);
+                i.putExtra("a", 1);
+                LoginActivity.profil2 = 0;
+
+                startActivity(i);
+            }
+        });
+
            Button mfriendButton = (Button) findViewById(R.id.corazon_buto);
             mfriendButton.setOnClickListener(new View.OnClickListener() {
                 @Override

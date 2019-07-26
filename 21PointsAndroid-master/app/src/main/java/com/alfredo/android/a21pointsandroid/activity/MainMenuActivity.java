@@ -168,7 +168,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     @Override
     public void onReciveInvitations(ArrayList<Invitation> body) {
         receivedInvitations = body;
-        Intent i = new Intent(MainMenuActivity.this, InvitationActivity.class);
+        Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("user", user);
@@ -218,13 +218,10 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     @Override
     public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
         dmessage = messages;
-        Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("user", user);
-        i.putExtras(bundle);
+        RestAPIManager.getInstance().getAllInvitations(getContext());
 
-        startActivity(i);
+
     }
 
     @Override

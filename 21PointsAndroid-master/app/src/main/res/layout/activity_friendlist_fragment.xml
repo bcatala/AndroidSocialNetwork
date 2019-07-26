@@ -43,7 +43,7 @@
         android:background="@color/White"
         android:backgroundTint="@color/colorAccent"
         android:backgroundTintMode="add"
-        android:columnCount="5"
+        android:columnCount="6"
         android:gravity="end"
         android:orientation="horizontal"
 
@@ -96,6 +96,18 @@
             android:layout_column="4"
             android:background="@drawable/misatge"
             android:textAlignment="viewStart" />
+
+
+        <Button
+            android:id="@+id/invit_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="38dp"
+            android:layout_height="36dp"
+            android:layout_row="0"
+            android:layout_column="5"
+            android:background="@drawable/correo"
+            android:textAlignment="viewStart" />
+
 
     </GridLayout>
 
