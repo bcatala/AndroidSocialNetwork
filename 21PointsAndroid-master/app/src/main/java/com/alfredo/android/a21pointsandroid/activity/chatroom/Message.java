@@ -41,13 +41,12 @@ public class Message {
     public Message(String message, UserProfile2 sender, UserProfile2 reciver, Integer id) {
         this.message = message;
         this.sender = sender;
-        createdDate = "";
         url = "";
         picture = "";
+        createdDate = "";
         pictureContentType = null;
-        this.reciver = reciver;
         this.id = id;
-
+        this.reciver = reciver;
     }
 
     public Chatroom getChatroom() {

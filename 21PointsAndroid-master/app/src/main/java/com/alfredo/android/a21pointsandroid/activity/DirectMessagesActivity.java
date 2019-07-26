@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.UserMessage;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class DirectMessagesActivity extends AppCompatActivity {
     private int j;
 
 
-    private ArrayList<Direct_Message> dms;
+    private ArrayList<Direct_message2> dms;
     private ArrayList<UserMessage> dataStructure;
 
     @Override

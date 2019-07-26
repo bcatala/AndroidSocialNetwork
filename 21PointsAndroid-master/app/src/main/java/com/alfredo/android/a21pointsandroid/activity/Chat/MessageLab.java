@@ -56,7 +56,7 @@ public class MessageLab {
                   mMessages.add(m);
               }
                 if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
-                        MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getReciver().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
 
                     m.setMissatge("\t\t\tTu"+": "+MainMenuActivity.dmessage.get(i).getMessage());

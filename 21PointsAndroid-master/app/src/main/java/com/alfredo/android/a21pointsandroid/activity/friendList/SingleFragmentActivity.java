@@ -12,19 +12,25 @@ import android.widget.EditText;
 
 import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.AuxActivity;
+import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListActivity;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity2;
 import com.alfredo.android.a21pointsandroid.activity.SearchUserActivity;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListActivity;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
+import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 import com.alfredo.android.a21pointsandroid.restapi.callback.UserAPICallBack;
 
 import java.util.ArrayList;
 
-public abstract class SingleFragmentActivity extends AppCompatActivity implements UserAPICallBack{
+public abstract class SingleFragmentActivity extends AppCompatActivity implements UserAPICallBack,ChatroomAPICallBack{
 
     private static  EditText Profile_to_search  ;
     private String login;
@@ -32,6 +38,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public static Friend myFriend;
     public static int surt;
     static SingleFragmentActivity a2;
+    public static ArrayList<Chatroom> allChatrooms;
+    public static Chatroom chat;
 
     protected abstract Fragment createFragment();
     public  void proba(){
@@ -51,7 +59,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
 
          a2=SingleFragmentActivity.this;
-
+        LoginActivity.profil2 = 0;
 
 
 
@@ -65,7 +73,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
                     LoginActivity.profil = 0;
                     Intent i = new Intent(SingleFragmentActivity.this, ProfileActivity.class);
                     i.putExtra("login", login);
-
+                    LoginActivity.profil2 = 0;
                     startActivity(i);
                     //mInviteButton.setText("INVITE");
                     // RestAPIManager.getInstance().searchUser(getContex(), LoginActivity.token, Profile_to_search.getText().toString());
@@ -82,7 +90,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
                     LoginActivity.profil = 1;
                     Intent i = new Intent(SingleFragmentActivity.this, AuxActivity.class);
                     i.putExtra("a", 1);
-
+                    LoginActivity.profil2 = 0;
 
                     startActivity(i);
                 }
@@ -106,6 +114,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
                 public void onClick(View v) {
 
                     LoginActivity.profil = 0;
+                    LoginActivity.profil2 = 0;
                     Intent i2 = new Intent(SingleFragmentActivity.this, AuxActivity.class);
                     i2.putExtra("a", 0);
 
@@ -113,6 +122,18 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
                     startActivity(i2);
                 }
             });
+
+
+        Button roomButton = (Button) findViewById(R.id.misatge_button);
+        roomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LoginActivity.profil2 = 2;
+                RestAPIManager.getInstance().getChatrooms(getContextChat());
+
+            }
+        });
 
             FragmentManager fm = getSupportFragmentManager();
             Fragment fragment = fm.findFragmentById(R.id.fragment_container);
@@ -145,6 +166,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
     }
 
+    private ChatroomAPICallBack getContextChat() {
+
+        return this;
+    }
+
     @Override
     public void onGetUser(User body) {
         this.user = body;
@@ -152,6 +178,21 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
         Intent i = new Intent(SingleFragmentActivity.this, LoginActivity.class);
 
         startActivity(i);
+    }
+
+    @Override
+    public void onGetChatrooms(ArrayList<Chatroom> body) {
+        MainMenuActivity.allChatrooms = body;
+        Intent i = new Intent(SingleFragmentActivity.this, ChatroomListActivity.class);
+        startActivity(i);
+
+
+    }
+
+    @Override
+    public void onGetMessages(Chatroom body) {
+        chat = body;
+
     }
 
     @Override
@@ -178,4 +219,17 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     public void onFailure(Throwable t) {
 
     }
+
+    @Override
+    public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
+
+        MainMenuActivity.dmessage=messages;
+
+    }
+
+    @Override
+    public void onPostDirectMessage() {
+
+    }
+
 }

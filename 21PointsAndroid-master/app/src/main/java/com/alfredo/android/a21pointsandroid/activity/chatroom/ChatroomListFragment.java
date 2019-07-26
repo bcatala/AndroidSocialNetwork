@@ -12,9 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.Chat.MessageListActivity;
 import com.alfredo.android.a21pointsandroid.activity.InvitationActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
+import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.restapi.RestAPIManager;
 import com.alfredo.android.a21pointsandroid.restapi.callback.ChatroomAPICallBack;
 
@@ -24,6 +28,8 @@ import java.util.List;
 public class ChatroomListFragment extends Fragment {
     private RecyclerView mChatroomRecyclerView;
     private ChatroomAdapter mAdapter;
+
+    public static Chatroom a;
     public static ArrayList<Message> allInnerMessages;
 
     @Override
@@ -52,6 +58,7 @@ public class ChatroomListFragment extends Fragment {
             implements View.OnClickListener, ChatroomAPICallBack {
 
         private Chatroom mChatroom;
+
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
@@ -92,7 +99,14 @@ public class ChatroomListFragment extends Fragment {
                     .show();
             //START ACTIVITY CHAT RECYCLER VIEW
             allInnerMessages = body.getMessages();
+            a=mChatroom;
+
+
+            Intent i = new Intent(com.alfredo.android.a21pointsandroid.activity.chatroom.SingleFragmentActivity.a2, MessageListActivity.class);
+            startActivity(i);
         }
+
+
 
         public ChatroomListFragment.ChatroomHolder getContextFragment(){
             return this;
@@ -104,7 +118,7 @@ public class ChatroomListFragment extends Fragment {
         }
 
         @Override
-        public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
+        public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
 
         }
 

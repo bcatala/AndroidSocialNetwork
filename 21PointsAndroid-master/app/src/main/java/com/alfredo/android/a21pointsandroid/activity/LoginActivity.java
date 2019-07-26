@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAPICallBack
     public static ArrayList<UserProfile> myFriends;
     public static ArrayList<UserProfile> AllProfiles;
     public static int profil;
+    public static int profil2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

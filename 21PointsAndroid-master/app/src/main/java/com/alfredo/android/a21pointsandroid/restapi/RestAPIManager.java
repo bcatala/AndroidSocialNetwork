@@ -337,11 +337,11 @@ public class RestAPIManager {
     }
 
     public synchronized void getDirectMessage(final ChatroomAPICallBack chatroomAPICallBack) {
-        Call<ArrayList<Direct_Message>> call = restApiService.getDirectMessage("Bearer " + LoginActivity.token);
+        Call<ArrayList<Direct_message2>> call = restApiService.getDirectMessage("Bearer " + LoginActivity.token);
 
-        call.enqueue(new Callback<ArrayList<Direct_Message>>() {
+        call.enqueue(new Callback<ArrayList<Direct_message2>>() {
             @Override
-            public void onResponse(Call<ArrayList<Direct_Message>> call, Response<ArrayList<Direct_Message>> response) {
+            public void onResponse(Call<ArrayList<Direct_message2>> call, Response<ArrayList<Direct_message2>> response) {
                 if (response.isSuccessful()) {
                     chatroomAPICallBack.onGetDirectMessage(response.body());
                 } else {
@@ -350,7 +350,7 @@ public class RestAPIManager {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Direct_Message>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Direct_message2>> call, Throwable t) {
                 chatroomAPICallBack.onFailure(t);
             }
         });

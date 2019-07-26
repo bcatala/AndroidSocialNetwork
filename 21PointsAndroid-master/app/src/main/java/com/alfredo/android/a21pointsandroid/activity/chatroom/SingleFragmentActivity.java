@@ -9,12 +9,15 @@ import com.alfredo.android.a21pointsandroid.R;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
+    public static SingleFragmentActivity a2;
+
     protected abstract Fragment createFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allchatrooms_fragment);
+        a2= SingleFragmentActivity.this;
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container_chatroom);

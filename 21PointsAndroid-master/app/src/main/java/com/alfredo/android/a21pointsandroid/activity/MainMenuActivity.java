@@ -20,6 +20,7 @@ import com.alfredo.android.a21pointsandroid.activity.friendList.FriendActivity;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendFragment;
 import com.alfredo.android.a21pointsandroid.activity.friendList.FriendListActivity;
 import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_Message;
+import com.alfredo.android.a21pointsandroid.model.AuxiliarClass.Direct_message2;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
@@ -50,7 +51,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     public static ArrayList<Chatroom> allChatrooms;
     public static Chatroom chat;
 
-    public static ArrayList<Direct_Message> dmessage;
+    public static ArrayList<Direct_message2> dmessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,7 +216,7 @@ public class MainMenuActivity extends AppCompatActivity implements UserAPICallBa
     }
 
     @Override
-    public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
+    public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
         dmessage = messages;
         Intent i = new Intent(MainMenuActivity.this, FriendListActivity.class);
 

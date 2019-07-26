@@ -15,6 +15,8 @@ import com.alfredo.android.a21pointsandroid.R;
 import com.alfredo.android.a21pointsandroid.activity.LoginActivity;
 import com.alfredo.android.a21pointsandroid.activity.MainMenuActivity;
 import com.alfredo.android.a21pointsandroid.activity.ProfileActivity;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.Chatroom;
+import com.alfredo.android.a21pointsandroid.activity.chatroom.ChatroomListFragment;
 import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.UserProfile;
 
@@ -43,12 +45,15 @@ public class MessageListFragment extends Fragment {
         return view;
     }
 
-    private void updateUI() {
+    public void updateUI() {
 
-        MessageLab messageLab = MessageLab.get(getActivity());
+       // MessageLab messageLab = MessageLab.get(getActivity());
         mMessages =  new ArrayList<>();
          //mMessages = messageLab.getMessages();
-        mMessages =  new ArrayList<>();
+        if(LoginActivity.profil2 == 0){
+
+            mMessages =  new ArrayList<>();
+
         List<Message> mes = new ArrayList<>();
         int j=0;
         int id=0;
@@ -72,7 +77,7 @@ public class MessageListFragment extends Fragment {
 
                 if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
-                        MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin())) {
+                        MainMenuActivity.dmessage.get(i).getReciver().getUser().getLogin())) {
 
                     m.setMissatge(LoginActivity.AllProfiles.get(id).getUser().getLogin()+": "+MainMenuActivity.dmessage.get(i).getMessage());
                     mes.add(m);
@@ -81,7 +86,7 @@ public class MessageListFragment extends Fragment {
 
 
                 if(LoginActivity.AllProfiles.get(id).getUser().getLogin().equals(
-                        MainMenuActivity.dmessage.get(i).getRecipient().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
+                        MainMenuActivity.dmessage.get(i).getReciver().getUser().getLogin()) && LoginActivity.userProfile2.getUser().getLogin().equals(
                         MainMenuActivity.dmessage.get(i).getSender().getUser().getLogin())) {
 
                     m.setMissatge("\t\t\tTu"+": "+MainMenuActivity.dmessage.get(i).getMessage());
@@ -112,7 +117,59 @@ public class MessageListFragment extends Fragment {
 
         }
 
+         }else{
 
+            int id2=0;
+            for(int aux=0;aux<MainMenuActivity.allChatrooms.size();aux++){
+
+                if(ChatroomListFragment.a.getId().equals(MainMenuActivity.allChatrooms.get(aux).getId())){
+
+                    id2=aux;
+
+                }
+
+
+
+            }
+
+            //if(ChatroomListFragment.a.getMessages().size()!=0){
+              // for(int j=0;j<ChatroomListFragment.a.getMessages().size();j++){
+
+                    Message m = new Message();
+
+                    //if(ChatroomListFragment.a.getMessages().get(j).getMessage() != null){
+                    m.setMissatge(ChatroomListFragment.a.getTopic());
+
+                    mMessages.add(m);
+
+
+                //}else{
+
+
+
+                    //}
+             //  }
+                if(mMessages.size()!=0){
+
+
+
+                }else{
+
+                    Message m2 = new Message();
+
+                    m2.setMissatge("No te missatges2");
+                    mMessages.add(m2);
+                }
+      //  }else{
+
+        //    Message m = new Message();
+
+        //    m.setMissatge("No te missatg");
+         //   mMessages.add(m);
+
+       // }
+
+        }
         mAdapter = new MessageAdapter(mMessages);
         mCrimeRecyclerView.setAdapter(mAdapter);
     }

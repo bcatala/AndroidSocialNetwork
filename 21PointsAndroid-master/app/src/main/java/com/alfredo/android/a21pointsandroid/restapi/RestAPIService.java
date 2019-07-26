@@ -62,7 +62,7 @@ public interface RestAPIService {
     Call<Chatroom> getMessages(@Path("id") Integer id, @Header("Authorization") String token);
 
     @GET("/api/direct-messages")
-    Call<ArrayList<Direct_Message>> getDirectMessage(@Header("Authorization") String token);
+    Call<ArrayList<Direct_message2>> getDirectMessage(@Header("Authorization") String token);
 
 
     @PUT("/api/direct-messages")

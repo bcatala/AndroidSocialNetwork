@@ -29,18 +29,18 @@ public class ProfileActivity2 extends AppCompatActivity implements UserAPICallBa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile3);
 
        // String email = getIntent().getStringExtra("email");
 
 
-        UsernameField = (TextView) findViewById(R.id.friend_username);
+        UsernameField = (TextView) findViewById(R.id.friend_username4);
         UsernameField.setText(LoginActivity.userProfile2.getDisplayName());
 
-        mEmailField = (TextView) findViewById(R.id.friend_email);
+        mEmailField = (TextView) findViewById(R.id.friend_email4);
         mEmailField.setText(LoginActivity.userProfile2.getUser().getEmail());
 
-        mAboutme = (TextView) findViewById(R.id.frase_abautme2);
+        mAboutme = (TextView) findViewById(R.id.frase_abautme4);
         mAboutme.setText(LoginActivity.userProfile2.getAboutMe());
 
 

@@ -34,7 +34,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
         setContentView(R.layout.activity_chat_fragment);
 
         TextView UserChat = (TextView) findViewById(R.id.UserChat);
-        UserChat.setText("User to chat-  :" + ProfileActivity.nomUser);
+        if(LoginActivity.profil2 == 0) {
+            UserChat.setText("User to chat : "+ ProfileActivity.nomUser);
+
 
         PostMissatge= (EditText) findViewById(R.id.Profile_to_search2);
 
@@ -67,11 +69,15 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
 
                 RestAPIManager.getInstance().PostDirectMessage(dm2,getApiCall());
 
+
             }
 
         });
 
+    }else{
 
+        UserChat.setText("User to chat-room  :");
+    }
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
@@ -105,9 +111,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     }
 
     @Override
-    public void onGetDirectMessage(ArrayList<Direct_Message> messages) {
+    public void onGetDirectMessage(ArrayList<Direct_message2> messages) {
 
         MainMenuActivity.dmessage=messages;
+
+
 
 
 
