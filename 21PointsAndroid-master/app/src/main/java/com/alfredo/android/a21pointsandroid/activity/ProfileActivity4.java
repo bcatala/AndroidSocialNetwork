@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alfredo.android.a21pointsandroid.R;
+import com.alfredo.android.a21pointsandroid.activity.friendList.FriendLab3;
 import com.alfredo.android.a21pointsandroid.activity.friendList.SingleFragmentActivity;
 import com.alfredo.android.a21pointsandroid.model.Invitation;
 import com.alfredo.android.a21pointsandroid.model.User;
@@ -78,14 +79,14 @@ public class ProfileActivity4 extends AppCompatActivity implements UserAPICallBa
             @Override
             public void onClick(View v) {
 
-                //RestAPIManager.getInstance().changeInvitation(2,acceptFriend.isChecked(),getContext());
+                RestAPIManager.getInstance().changeInvitation(FriendLab3.id_accepted,acceptFriend.isChecked(),getContext());
                 Toast.makeText(ProfileActivity4.this, "Invitation sended!",Toast.LENGTH_LONG).show();
 
             }
         });
     }
 
-    public ProfileActivity4 getContext(){
+    public InviteCallBack getContext(){
         return this;
     }
 

@@ -299,12 +299,10 @@ public class RestAPIManager {
     public synchronized void changeInvitation(int id, boolean state, final InviteCallBack inviteCallBack) {
 
         Call<Invitation> call = restApiService.changeInvitation(id, state, "Bearer " + userToken.getIdToken());
-        System.out.println(call.request());
-
-        call.enqueue(new Callback<Invitation>() {
+          call.enqueue(new Callback<Invitation>() {
             @Override
             public void onResponse(Call<Invitation> call, Response<Invitation> response) {
-                System.out.println(response.body());
+                
                 if (response.isSuccessful()) {
                     inviteCallBack.onChangeStateInvite();
                 }

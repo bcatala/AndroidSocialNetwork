@@ -11,6 +11,7 @@ import java.util.UUID;
 
 public class FriendLab3 {
     public static FriendLab3 sFriendLab;
+    public static int id_accepted;
 
     public static List<Friend> mFriends;
 
@@ -59,6 +60,7 @@ public class FriendLab3 {
                 for (int i = 0; i < MainMenuActivity.receivedInvitations.size(); i++) {
                     Friend friend = new Friend();
                     friend.setUsername(MainMenuActivity.receivedInvitations.get(i).getSent().getDisplayName());
+                    id_accepted=MainMenuActivity.receivedInvitations.get(i).getSent().getId();
                     friend.setEmail("---------");
                     try {
 
